@@ -2,22 +2,42 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-09 17:43:25
+ * @Last Modified time: 2018-08-15 16:16:22
  */
 
 <template>
     <div class="app">
-        <h1>{{name}}</h1>
-        <transition name="aa">
-            <router-view class="router-view"></router-view>
-        </transition>
+        <div class="top-top"></div>
+        <el-container style="width: 1100px; margin: 0 auto; min-height: 100%">
+            <el-aside width="200px">
+                <AsidePage/>
+            </el-aside>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
+        </el-container>
     </div>
 </template>
 
 
 <script>
+    import Vue from 'vue';
+    import {
+        Container,
+        Main,
+        Aside
+    } from 'element-ui';
+
+    import AsidePage from './Aside/AsidePage.vue';
+
+    Vue.use(Container);
+    Vue.use(Main);
+    Vue.use(Aside);
     export default {
         name: 'APP',
+        components: {
+            AsidePage
+        },
         data() {
             return {
                 message: 'Hello World!!'
@@ -32,5 +52,14 @@
 </script>
 
 <style lang="less" scoped>
+    .app {
+        min-height: 100%;
+        width: 100%;
 
+        .top-top {
+            height: 2px;
+            width: 100%;
+            background: #409eff;
+        }
+    }
 </style>

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:44:35
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-09 17:41:56
+ * @Last Modified time: 2018-08-15 16:03:04
  */
 
 import Vue from 'vue';
@@ -10,7 +10,8 @@ import APP from 'comp/APP.vue';
 import setMetaEl from './responsive/meta';
 import setHtmlFont from './responsive/font';
 
-import './style/reset.less'
+import './style/reset.less';
+import './style/layout.less';
 
 import router from './router/index';
 import store from './store/index';
@@ -30,8 +31,8 @@ function vueInit() {
 
 function init() {
     try {
-        setMetaEl(document, window);
-        setHtmlFont(),
+        // setMetaEl(document, window);
+        // setHtmlFont(),
         vueInit();
     } catch (error) {
         console.log('启动出错, 请检查....');

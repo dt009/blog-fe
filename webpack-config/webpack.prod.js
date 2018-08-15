@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 14:57:24
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-09 15:29:03
+ * @Last Modified time: 2018-08-15 15:18:39
  */
 
 const merge = require('webpack-merge');
@@ -23,6 +23,7 @@ module.exports = merge(common, {
             'vue',
             'vue-router',
             'vuex',
+            'element-ui',
         ]
     },
 
@@ -58,6 +59,18 @@ module.exports = merge(common, {
                     {loader: 'less-loader'}
                 ]
             },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '/'
+                        }
+                    },
+                    {loader: 'css-loader'},
+                ]
+            }
         ]
     },
 

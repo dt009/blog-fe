@@ -1,8 +1,8 @@
 /*
  * @Author: duantao-ds
  * @Date: 2018-08-09 15:57:10
- * @Last Modified by:   duantao-ds
- * @Last Modified time: 2018-08-09 15:57:10
+ * @Last Modified by: duantao-ds
+ * @Last Modified time: 2018-08-15 15:59:34
  */
 
 function setHtmlFont() {
@@ -17,6 +17,10 @@ function setHtmlFont() {
 
     let fontSize = 100 / 750 * width;
 
+    if (window.screen.width > 800) {
+        fontSize = 100 * dpr;
+    }
+
     document.querySelector('html').style.fontSize = (fontSize) + 'px';
 
     window.addEventListener(resizeEvt, function () {
@@ -24,6 +28,10 @@ function setHtmlFont() {
         let width = document.querySelector('html').offsetWidth;
 
         let fontSize = 100 / 750 * width;
+
+        if (window.screen.width > 800) {
+            fontSize = 100 * dpr;
+        }
 
         document.querySelector('html').style.fontSize = (fontSize) + 'px';
 
