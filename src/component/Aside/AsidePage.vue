@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 15:29:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 16:51:46
+ * @Last Modified time: 2018-08-15 17:41:56
  */
 
 <template>
@@ -16,18 +16,12 @@
             </header>
             <nav>
                 <ul>
-                    <li>
-                        <router-link to="/">
-                            <span>&#xe618;</span>
-                            首页
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="/about">
-                            <span>&#xe653;</span>
-                            关于
-                        </router-link>
-                    </li>
+                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
+                        <a><span>&#xe618;</span> 首页</a>
+                    </router-link>
+                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
+                        <a><span>&#xe653;</span> 关于</a>
+                    </router-link>
                 </ul>
             </nav>
         </div>
@@ -56,9 +50,7 @@
         width: 100%;
         border: 1px solid #409eff;
         .aside-top {
-
             box-shadow: 10px 10px 5px #409eff;
-
             header {
                 color: #fff;
                 height: 100px;
@@ -83,13 +75,22 @@
                         height: 30px;
                         line-height: 30px;
                         padding-left: 30px;
+                        a {
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                        }
 
+                        &.link-active {
+                            background: #ccc;
+                            color: #409eff;
+                        }
                         span {
                             font-family: 'iconfont'
                         }
-
                         &:hover {
-                            background: #ccc;
+                            background: #e5e5e5;
+                            color: #fff;
                         }
                     }
                 }
