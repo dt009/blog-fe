@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 15:29:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 11:49:02
+ * @Last Modified time: 2018-08-16 17:51:15
  */
 
 <template>
@@ -16,6 +16,24 @@
             </header>
             <nav>
                 <ul>
+                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
+                        <a><span>&#xe618;</span> 首页</a>
+                    </router-link>
+                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
+                        <a><span>&#xe653;</span> 关于</a>
+                    </router-link>
+                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
+                        <a><span>&#xe618;</span> 首页</a>
+                    </router-link>
+                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
+                        <a><span>&#xe653;</span> 关于</a>
+                    </router-link>
+                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
+                        <a><span>&#xe618;</span> 首页</a>
+                    </router-link>
+                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
+                        <a><span>&#xe653;</span> 关于</a>
+                    </router-link>
                     <router-link tag="li" to="/" exact-active-class="link-active" exact>
                         <a><span>&#xe618;</span> 首页</a>
                     </router-link>

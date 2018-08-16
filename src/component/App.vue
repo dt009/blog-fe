@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 11:48:22
+ * @Last Modified time: 2018-08-16 17:50:52
  */
 
 <template>
@@ -12,7 +12,7 @@
             <el-aside width="210px">
                 <AsidePage/>
             </el-aside>
-            <el-main>
+            <el-main style="padding-bottom: 0;">
                 <router-view></router-view>
             </el-main>
         </el-container>
@@ -55,6 +55,7 @@
     .app {
         min-height: 100%;
         width: 100%;
+        background: #f2f2f2;
 
         .top-top {
             height: 2px;
