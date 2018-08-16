@@ -2,13 +2,13 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 16:17:25
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 14:51:05
+ * @Last Modified time: 2018-08-16 14:00:21
  */
 
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomePage from 'comp/Home/HomePage';
+import HomePage from 'comp/HomePage/HomePage';
 
 
 Vue.use(Router);

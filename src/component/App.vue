@@ -2,14 +2,14 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 16:16:22
+ * @Last Modified time: 2018-08-16 11:48:22
  */
 
 <template>
     <div class="app">
         <div class="top-top"></div>
         <el-container style="width: 1100px; margin: 0 auto; min-height: 100%">
-            <el-aside width="200px">
+            <el-aside width="210px">
                 <AsidePage/>
             </el-aside>
             <el-main>
@@ -28,7 +28,7 @@
         Aside
     } from 'element-ui';
 
-    import AsidePage from './Aside/AsidePage.vue';
+    import AsidePage from './AsidePage/AsidePage.vue';
 
     Vue.use(Container);
     Vue.use(Main);

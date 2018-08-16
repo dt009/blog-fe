@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 15:29:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 17:41:56
+ * @Last Modified time: 2018-08-16 11:49:02
  */
 
 <template>
@@ -25,12 +25,17 @@
                 </ul>
             </nav>
         </div>
+        <WebsiteOverviewPage/>
     </div>
 </template>
 
 <script>
+    import WebsiteOverviewPage from '../WebsitOverviewPage/WebsiteOverviewPage.vue';
     export default {
         name: 'AsidePage',
+        components: {
+            WebsiteOverviewPage
+        },
         data() {
             return {
                 title: '段涛的博客'
@@ -48,9 +53,12 @@
 <style lang="less" scoped>
     .aside-page {
         width: 100%;
-        border: 1px solid #409eff;
+
         .aside-top {
-            box-shadow: 10px 10px 5px #409eff;
+            width: 200px;
+            box-shadow: 5px 5px 5px #409eff;
+            border: 1px solid #409eff;
+            margin-bottom: 30px;
             header {
                 color: #fff;
                 height: 100px;

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 16:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 16:49:21
+ * @Last Modified time: 2018-08-16 15:15:51
  */
 
 const webpack = require('webpack');
@@ -31,6 +31,9 @@ module.exports = {
     resolve: {
         alias:  {
             comp: path.resolve(__dirname, '../src/component/'),
+            api: path.resolve(__dirname, '../src/request_api/'),
+            public: path.resolve(__dirname, '../src/public/'),
+            common: path.resolve(__dirname, '../src/common/')
         },
 
         extensions: ['.js', '.vue', '.css', '.less', '.png', '.jpg', '.jpeg', '.gif', '.json']
