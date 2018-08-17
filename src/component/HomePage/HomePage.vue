@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 14:48:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 17:47:44
+ * @Last Modified time: 2018-08-17 10:53:33
  */
 
 <template>
@@ -15,7 +15,7 @@
             <el-pagination
                 background
                 layout="prev, pager, next, sizes, ->, total"
-                :total="1000"
+                :total="100"
                 :page-sizes="[10, 20, 50, 100]"
                 :page-size="10"
             />

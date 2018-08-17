@@ -2,19 +2,28 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 17:50:52
+ * @Last Modified time: 2018-08-17 10:50:31
  */
 
 <template>
     <div class="app">
         <div class="top-top"></div>
         <el-container style="width: 1100px; margin: 0 auto; min-height: 100%">
-            <el-aside width="210px">
+
+            <el-aside width="205px">
                 <AsidePage/>
             </el-aside>
-            <el-main style="padding-bottom: 0;">
-                <router-view></router-view>
-            </el-main>
+            <el-container>
+                <el-header>
+                    <NavPage/>
+                </el-header>
+                <el-main style="padding-bottom: 0;">
+                    <router-view></router-view>
+                </el-main>
+            </el-container>
+        </el-container>
+        <el-container>
+
         </el-container>
     </div>
 </template>
@@ -25,18 +34,22 @@
     import {
         Container,
         Main,
-        Aside
+        Aside,
+        Header
     } from 'element-ui';
 
     import AsidePage from './AsidePage/AsidePage.vue';
+    import NavPage from './NavPage/NavPage.vue';
 
     Vue.use(Container);
     Vue.use(Main);
     Vue.use(Aside);
+    Vue.use(Header)
     export default {
         name: 'APP',
         components: {
-            AsidePage
+            AsidePage,
+            NavPage
         },
         data() {
             return {

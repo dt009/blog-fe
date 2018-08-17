@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 15:29:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 17:51:15
+ * @Last Modified time: 2018-08-17 10:25:50
  */
 
 <template>
@@ -14,34 +14,6 @@
                     {{keywords}}
                 </div>
             </header>
-            <nav>
-                <ul>
-                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
-                        <a><span>&#xe618;</span> 首页</a>
-                    </router-link>
-                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
-                        <a><span>&#xe653;</span> 关于</a>
-                    </router-link>
-                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
-                        <a><span>&#xe618;</span> 首页</a>
-                    </router-link>
-                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
-                        <a><span>&#xe653;</span> 关于</a>
-                    </router-link>
-                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
-                        <a><span>&#xe618;</span> 首页</a>
-                    </router-link>
-                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
-                        <a><span>&#xe653;</span> 关于</a>
-                    </router-link>
-                    <router-link tag="li" to="/" exact-active-class="link-active" exact>
-                        <a><span>&#xe618;</span> 首页</a>
-                    </router-link>
-                    <router-link tag="li" to="/about" exact-active-class="link-active" exact>
-                        <a><span>&#xe653;</span> 关于</a>
-                    </router-link>
-                </ul>
-            </nav>
         </div>
         <WebsiteOverviewPage/>
     </div>
@@ -92,33 +64,6 @@
                     text-align: center;
                     font-size: 14px;
                     line-height: 50px;
-                }
-            }
-            nav {
-                padding-top: 10px;
-                ul {
-                    li {
-                        height: 30px;
-                        line-height: 30px;
-                        padding-left: 30px;
-                        a {
-                            display: block;
-                            height: 100%;
-                            width: 100%;
-                        }
-
-                        &.link-active {
-                            background: #ccc;
-                            color: #409eff;
-                        }
-                        span {
-                            font-family: 'iconfont'
-                        }
-                        &:hover {
-                            background: #e5e5e5;
-                            color: #fff;
-                        }
-                    }
                 }
             }
         }
