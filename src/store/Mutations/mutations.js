@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:34:14
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 12:46:27
+ * @Last Modified time: 2018-08-17 19:40:34
  */
 
 const mutations = {
@@ -24,6 +24,18 @@ const mutations = {
     changePageNumber(state, value) {
         console.log('当前第几页 ===>> ', value);
         state.pageNumber = value;
+    },
+
+    // 改变 allCategoriesList 的值
+    changeAllCategoriesList(state, value) {
+        console.log('获取的分类标签列表为 ==>> ', value);
+        state.allCategoriesList = value;
+    },
+
+    // 改变 allTagsList 的值
+    changeAllTagsList(state, value) {
+        console.log('获取的所有标签的列表 ==>> ', value);
+        state.allTagsList = value;
     }
 }
 

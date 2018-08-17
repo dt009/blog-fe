@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:24:28
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 16:21:59
+ * @Last Modified time: 2018-08-17 17:42:24
  */
 
 <template>
@@ -32,6 +32,12 @@
                 index="3"
             >
                 <p><span  class="font">&#xe69e;</span> 标签</p>
+            </el-menu-item>
+            <el-menu-item
+                :route="{name: 'UploadPage', params: {}}"
+                index="4"
+            >
+                <p><span  class="font">&#xe69e;</span> 上传</p>
             </el-menu-item>
         </el-menu>
     </div>
@@ -63,6 +69,10 @@
 
                     case 'TagsPage':
                         active = '3'
+                        break;
+
+                    case 'UploadPage':
+                        active = '4'
                         break;
 
                     default:

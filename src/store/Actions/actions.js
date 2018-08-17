@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 15:23:13
+ * @Last Modified time: 2018-08-17 19:47:57
  */
 
 import URL from 'api/request_api';
@@ -10,6 +10,7 @@ import Fetch from 'common/fetch';
 
 const actions = {
 
+    // 请求获取所有的文章列表
     async getAllArticle({commit}) {
 
         let fetchData = await Fetch.post(URL.getAllArticleUrl);
@@ -23,6 +24,31 @@ const actions = {
         }
         else {
 
+        }
+    },
+
+    // 请求获取所有的分类标签列表
+    async getAllCategoriesList({commit}) {
+
+        let fetchData = await Fetch.get(URL.getAllCategoriesUrl);
+
+        if (fetchData) {
+            let {status, message, data} = fetchData;
+            if (status === 'ok') {
+                commit('changeAllCategoriesList', data)
+            }
+        }
+    },
+
+    // 获取所有的 tags 列表
+    async getAllTagsList({commit}) {
+        let fetchData = await Fetch.get(URL.getAllTagsUrl);
+
+        if (fetchData) {
+            let {status, message, data} = fetchData;
+            if (status === 'ok') {
+                commit('changeAllTagsList', data)
+            }
         }
     }
 }

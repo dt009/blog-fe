@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 14:48:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 17:27:48
+ * @Last Modified time: 2018-08-17 19:47:19
  */
 
 <template>
@@ -15,20 +15,20 @@
                 height="400"
                 style="width: 100%; flex: 1; overflow: auto; margin-bottom: 10px;"
                 :row-style="{cursor: 'pointer'}"
-                border="true"
+                :border="true"
             >
 
                 <el-table-column label="#" prop="sign" width="60" fixed="left" />
 
-                <el-table-column label="标题" prop="title" show-overflow-tooltip="true" width="150" fixed="left"></el-table-column>
+                <el-table-column label="标题" prop="title" :show-overflow-tooltip="true" width="150" fixed="left"></el-table-column>
 
-                <el-table-column label="简介" show-overflow-tooltip="true" prop="description" width="370"></el-table-column>
+                <el-table-column label="简介" :show-overflow-tooltip="true" prop="description" width="370"></el-table-column>
 
                 <el-table-column label="创建日期" prop="date" width="120" />
 
                 <el-table-column label="评论数量" align="right" prop="comment_count" />
 
-                <el-table-column label="分类"  prop="comment_count" fixed="right" show-overflow-tooltip="true" width="110">
+                <el-table-column label="分类"  prop="comment_count" fixed="right" :show-overflow-tooltip="true" width="110">
                     <template slot-scope="scope">
                         <el-tag
                             v-for="(category, index) in scope.row.categories"
