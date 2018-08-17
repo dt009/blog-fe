@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 15:04:01
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 15:20:56
+ * @Last Modified time: 2018-08-17 11:54:27
  */
 
 
@@ -23,14 +23,15 @@ let myHeaders = new Headers({
 function FetchIntercept(res) {
     if (res.status != 200) {
         // 请求失败的错误处理
-
-    } else {
-        MessageBox.alert('这是一段内容', '标题名称', {
+        MessageBox.alert(res.status, '请求出错', {
             confirmButtonText: 'OK',
             callback: () => {
                 console.log(1111111)
             }
         })
+        return res.json();
+    } else {
+
         return res.json();
     }
 }

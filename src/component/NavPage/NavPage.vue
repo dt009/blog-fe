@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:24:28
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 11:16:45
+ * @Last Modified time: 2018-08-17 16:21:59
  */
 
 <template>
@@ -13,22 +13,22 @@
             text-color="#fff"
             active-text-color="#ffd04b"
             :router="true"
-            default-active="1"
+            :default-active="activeIndex"
         >
             <el-menu-item
-                :route="{name: 'HomePage', params: {}}"
+                :route="{name: 'HomePage', path: '/', params: {}}"
                 index="1"
             >
                 <p><span class="font">&#xe618;</span> 首页</p>
             </el-menu-item>
             <el-menu-item
-                :route="{name: 'AboutPage', params: {}}"
+                :route="{name: 'AboutPage', path: '/about', params: {}}"
                 index="2"
             >
                 <p><span  class="font">&#xe653;</span> 关于</p>
             </el-menu-item>
             <el-menu-item
-                :route="{name: 'TagsPage', params: {}}"
+                :route="{name: 'TagsPage', path: '/tags', params: {}}"
                 index="3"
             >
                 <p><span  class="font">&#xe69e;</span> 标签</p>
@@ -48,7 +48,29 @@
     Vue.use(Menu);
     Vue.use(MenuItem)
     export default {
-        name: 'NavPage'
+        name: 'NavPage',
+        computed: {
+            activeIndex() {
+                let active = '';
+                switch (this.$route.name) {
+                    case 'HomePage':
+                        active = '1'
+                        break;
+
+                    case 'AboutPage':
+                        active = '2'
+                        break;
+
+                    case 'TagsPage':
+                        active = '3'
+                        break;
+
+                    default:
+                        break;
+                }
+                return active;
+            }
+        }
     }
 </script>
 
