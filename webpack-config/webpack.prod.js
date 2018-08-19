@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 14:57:24
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 15:18:39
+ * @Last Modified time: 2018-08-19 15:45:41
  */
 
 const merge = require('webpack-merge');
@@ -79,7 +79,7 @@ module.exports = merge(common, {
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].[contenthash].css",
+            filename: "css/[name].[contenthash].css",
             chunkFilename: "[id].css"
         }),
         new CleanWebpackPlugin(['dist'], {

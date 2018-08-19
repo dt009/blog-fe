@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 16:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 15:15:51
+ * @Last Modified time: 2018-08-19 15:44:18
  */
 
 const webpack = require('webpack');
@@ -57,7 +57,7 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 5000,
-                            name: 'public/image/[name].[ext]'
+                            name: 'image/[name].[ext]'
                         }
                     }
                 ]
@@ -66,7 +66,8 @@ module.exports = {
                 test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 10000
+                    limit: 10000,
+                    name: 'iconfont/[name].[ext]'
                 }
             }
 
