@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 17:34:52
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 19:57:09
+ * @Last Modified time: 2018-08-19 14:48:29
  */
 
 <template>
@@ -12,7 +12,13 @@
             <div class="blog-title">
                 <label for="title">
                         博客标题:
-                        <input name="title" id="title" type="text" placeholder="请输入博客的标题">
+                        <input name="title" id="title" type="text" v-model="title" placeholder="请输入博客的标题">
+                    </label>
+            </div>
+            <div class="blog-title">
+                <label for="description">
+                        博客标题:
+                        <input name="description" id="description" type="text" v-model="description" placeholder="请输入博客的描述">
                     </label>
             </div>
             <div class="blog-categories">
@@ -26,7 +32,7 @@
                     <el-checkbox
                         v-for="(categories, index) in categoriesList"
                         :key="index"
-                        :label="categories.code"
+                        :label="categories"
                     >
                         {{categories.label}}
                     </el-checkbox>
@@ -43,11 +49,31 @@
                     <el-checkbox
                         v-for="(tags, index) in tagsList"
                         :key="index"
-                        :label="tags.code"
+                        :label="tags"
                     >
                         {{tags.label}}
                     </el-checkbox>
                 </el-checkbox-group>
+            </div>
+            <div class="upload-box">
+                <h3>上传博客文件:</h3>
+                <el-upload
+                    class="upload-blog"
+                    ref="upload"
+                    :action="uploadUrl"
+                    :multiple="false"
+                    accept=".md"
+                    :file-list="UploadFileList"
+                    :on-preview="handlePreview"
+                    :limit="1"
+                    :on-success="handleUploadSuccess"
+                >
+                      <el-button slot="trigger" size="small" type="primary">选取上传文件</el-button>
+                </el-upload>
+            </div>
+
+            <div class="submit-btn">
+                <el-button type="success" @click="handleSubmitData">上传</el-button>
             </div>
         </div>
     </div>
@@ -58,11 +84,20 @@
     import Vue from 'vue';
     import {
         CheckboxGroup,
-        Checkbox
+        Checkbox,
+        Upload,
+        Button,
+        Message
     } from 'element-ui';
+    import URL from 'api/request_api';
+    import Fetch from 'common/fetch';
 
     Vue.use(CheckboxGroup);
     Vue.use(Checkbox);
+    Vue.use(Upload);
+    Vue.use(Button);
+    Vue.use(Message);
+
     export default {
         name: 'UploadPage',
 
@@ -74,7 +109,12 @@
         data () {
             return {
                 selectCategoriesList: [],
-                selectTagsList: []
+                selectTagsList: [],
+                uploadUrl: URL.uploadBlogUrl,
+                UploadFileList: [],
+                filename: '',
+                title: '',
+                description: ''
             }
         },
 
@@ -85,6 +125,16 @@
 
             tagsList() {
                 return this.$store.state.allTagsList;
+            },
+
+            getSubmitData() {
+                return {
+                    title: this.title,
+                    tags: this.selectTagsList,
+                    filename: this.filename,
+                    categories: this.selectCategoriesList,
+                    description: this.description
+                }
             }
         },
 
@@ -98,6 +148,39 @@
                 console.log('选中的值  ===>> ', value);
                 this.selectTagsList = value;
             },
+
+            handlePreview(file) {
+                console.log(file);
+            },
+
+            handleUploadSuccess(res) {
+
+                let {status, message, data} = res;
+
+                if (status === 'ok') {
+                    Message.success({
+                        message: data.message,
+                        duration: '1500'
+                    });
+
+                    this.filename = data.filename
+                }
+            },
+
+            handleSubmitData() {
+                let fetchData = this.getSubmitData;
+                Fetch.post(URL.addBlogArticleUrl, fetchData)
+                    .then(res => {
+                        let {status, message, data} = res;
+
+                        if (status === 'ok') {
+                            Message.success({
+                                message: data.message,
+                                duration: '1500'
+                            })
+                        }
+                    })
+            }
 
         }
     }
@@ -128,6 +211,7 @@
                 line-height: 40px;
                 border-bottom: 1px solid #ccc;
                 padding-bottom: 10px;
+                margin-bottom: 10px;
 
                 input {
                     margin-left: 12px;
@@ -152,6 +236,34 @@
 
                 .el-checkbox-group {
                     padding-left: 20px;
+                }
+            }
+
+            .upload-box {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #ccc;
+
+                h3 {
+                    height: 30px;
+                    font-size: 16px;
+                    line-height: 30px;
+                    margin-bottom: 10px;
+                }
+
+                .upload-blog {
+                    width: 300px;
+                }
+
+
+            }
+
+            .submit-btn {
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                .el-button {
+                    margin-left: 200px;
                 }
             }
         }

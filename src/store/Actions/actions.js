@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 19:47:57
+ * @Last Modified time: 2018-08-19 15:07:18
  */
 
 import URL from 'api/request_api';
@@ -18,9 +18,7 @@ const actions = {
         if (fetchData) {
 
             let {status, message, data} = fetchData;
-            let arr = new Array(1000);
-            arr.fill(data[0]);
-            commit('changeAllArticleList', arr);
+            commit('changeAllArticleList', data);
         }
         else {
 

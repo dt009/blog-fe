@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 14:48:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 19:47:19
+ * @Last Modified time: 2018-08-19 15:36:53
  */
 
 <template>
@@ -17,7 +17,6 @@
                 :row-style="{cursor: 'pointer'}"
                 :border="true"
             >
-
                 <el-table-column label="#" prop="sign" width="60" fixed="left" />
 
                 <el-table-column label="标题" prop="title" :show-overflow-tooltip="true" width="150" fixed="left"></el-table-column>
@@ -41,7 +40,7 @@
                 <el-table-column label="标签" prop="tag"  min-width="150" width="200">
                     <template slot-scope="scope">
                         <el-tag
-                            v-for="(tag, index) in scope.row.tag"
+                            v-for="(tag, index) in scope.row.tags"
                             :key="index"
                             size="mini"
                             style="margin-right: 5px;">{{tag}}</el-tag>
