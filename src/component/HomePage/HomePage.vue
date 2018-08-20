@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 14:48:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-19 15:36:53
+ * @Last Modified time: 2018-08-20 11:39:45
  */
 
 <template>
@@ -16,6 +16,7 @@
                 style="width: 100%; flex: 1; overflow: auto; margin-bottom: 10px;"
                 :row-style="{cursor: 'pointer'}"
                 :border="true"
+                @row-click="goToDetails"
             >
                 <el-table-column label="#" prop="sign" width="60" fixed="left" />
 
@@ -106,8 +107,18 @@
 
             handlePageNumberChange(number) {
                 this.$store.commit("changePageNumber", number);
+            },
+            goToDetails(row, event, column) {
+
+                this.$router.push({
+                    name: 'ArticleDetailsPage',
+                    params: {
+                        filename: row.filename
+                    }
+                })
             }
         },
+
         beforeCreate() {
             this.$store.dispatch("getAllArticle");
         }

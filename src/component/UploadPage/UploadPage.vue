@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 17:34:52
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-19 14:48:29
+ * @Last Modified time: 2018-08-20 10:25:29
  */
 
 <template>
@@ -17,7 +17,7 @@
             </div>
             <div class="blog-title">
                 <label for="description">
-                        博客标题:
+                        博客描述:
                         <input name="description" id="description" type="text" v-model="description" placeholder="请输入博客的描述">
                     </label>
             </div>

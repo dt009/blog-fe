@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:24:28
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 17:42:24
+ * @Last Modified time: 2018-08-20 12:08:46
  */
 
 <template>
@@ -85,30 +85,10 @@
 </script>
 
 <style lang="less" scoped>
-    nav {
-        padding-top: 10px;
-        ul {
-            li {
-                height: 30px;
-                line-height: 30px;
-                padding-left: 30px;
-                a {
-                    display: block;
-                    height: 100%;
-                    width: 100%;
-                }
-                &.link-active {
-                    background: #ccc;
-                    color: #409eff;
-                }
-                span {
-                    font-family: 'iconfont'
-                }
-                &:hover {
-                    background: #e5e5e5;
-                    color: #fff;
-                }
-            }
+    .nav-page {
+
+        .el-menu {
+            padding-left: 15px;
         }
     }
 </style>

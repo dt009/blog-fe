@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 16:32:44
+ * @Last Modified time: 2018-08-20 12:07:07
  */
 
 <template>
@@ -15,7 +15,7 @@
             </el-aside>
 
             <el-container>
-                <el-header>
+                <el-header style="margin-bottom: 15px;">
                     <NavPage/>
                 </el-header>
                 <el-main style="padding-bottom: 0; margin-bottom: 40px; min-height: 400px" >
@@ -25,9 +25,6 @@
                 </el-main>
             </el-container>
         </el-container>
-        <!-- <el-container style="width: 1100px; margin: 10px auto 0; min-height: 100%">
-            <el-footer height="30px" style="background: #ccc;"></el-footer>
-        </el-container> -->
     </div>
 </template>
 
@@ -78,7 +75,7 @@
 
 <style lang="less" scoped>
     .app {
-        min-height: 100%;
+        height: 100%;
         width: 100%;
         background: #f2f2f2;
         display: flex;

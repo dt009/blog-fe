@@ -2,11 +2,19 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-19 15:36:23
+ * @Last Modified time: 2018-08-20 11:03:53
  */
 
+let requestUrl = '';
 
-const requestUrl = window.host || 'http://localhost:18080';
+if (process.env.NODE_ENV === 'production') {
+    requestUrl = `//${window.location.host}`;
+}
+else {
+    requestUrl = '//localhost:18080'
+}
+
+console.log('请求的地址 host ===>> ', requestUrl);
 
 const URL = {
     testUrl: `${requestUrl}/test`,
@@ -24,7 +32,10 @@ const URL = {
     uploadBlogUrl: `${requestUrl}/upload/blog`,
 
     // 添加博客的地址
-    addBlogArticleUrl: `${requestUrl}/blog/addArticle`
+    addBlogArticleUrl: `${requestUrl}/blog/addArticle`,
+
+    // 请求博客的具体内容
+    getArticleDetailUrl: `${requestUrl}/get/article/details`
 }
 
 export default URL;

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 14:57:24
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-19 15:45:41
+ * @Last Modified time: 2018-08-20 10:08:52
  */
 
 const merge = require('webpack-merge');
@@ -28,7 +28,7 @@ module.exports = merge(common, {
     },
 
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/'
     },
