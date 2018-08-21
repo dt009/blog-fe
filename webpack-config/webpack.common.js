@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 16:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-19 15:44:18
+ * @Last Modified time: 2018-08-21 17:11:05
  */
 
 const webpack = require('webpack');
@@ -11,7 +11,9 @@ const config = require('../config/config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HappyPack = require('happypack');
+const os = require('os');
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 module.exports = {
     optimization: {
@@ -42,13 +44,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-            },
-            {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: 'happypack/loader?id=js'
             },
             {
                 test: /\.(png|jpe?g|gif)(\?.*)?$/,
@@ -81,5 +79,13 @@ module.exports = {
             title: config.pageTitle
         }),
         new VueLoaderPlugin(),
+        new HappyPack({
+            id: 'js',
+            loaders: [
+                {
+                    loader: 'babel-loader'
+                }
+            ],
+        })
     ],
 }

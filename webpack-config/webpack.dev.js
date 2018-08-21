@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:25:58
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 15:18:16
+ * @Last Modified time: 2018-08-21 17:10:06
  */
 
 const merge = require('webpack-merge');
@@ -44,6 +44,14 @@ module.exports = merge(common, {
 
     module: {
         rules: [
+            {
+                test: /\.vue$/,
+                use: [
+                    {
+                        loader: 'vue-loader'
+                    }
+                ],
+            },
             {
                 test: /\.less$/,
                 use: [

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 14:57:24
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-20 10:08:52
+ * @Last Modified time: 2018-08-21 17:21:37
  */
 
 const merge = require('webpack-merge');
@@ -13,6 +13,10 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const HappyPack = require('happypack');
+const os = require('os');
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 
 module.exports = merge(common, {
@@ -47,6 +51,39 @@ module.exports = merge(common, {
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            loaders: {
+                                js: 'happypack/loader?id=js',
+                                css: [
+                                    {
+                                        loader: MiniCssExtractPlugin.loader,
+                                        options: {
+                                            publicPath: '/'
+                                        }
+                                    },
+                                    {loader: 'happypack/loader?id=css'},
+                                    {loader: 'happypack/loader?id=less'}
+                                ],
+                                less: [
+                                    {
+                                        loader: MiniCssExtractPlugin.loader,
+                                        options: {
+                                            publicPath: '/'
+                                        }
+                                    },
+                                    {loader: 'happypack/loader?id=css'},
+                                    {loader: 'happypack/loader?id=less'}
+                                ]
+                            }
+                        }
+                    }
+                ],
+            },
+            {
                 test: /\.less$/,
                 use: [
                     {
@@ -55,8 +92,8 @@ module.exports = merge(common, {
                             publicPath: '/'
                         }
                     },
-                    {loader: 'css-loader'},
-                    {loader: 'less-loader'}
+                    {loader: 'happypack/loader?id=css'},
+                    {loader: 'happypack/loader?id=less'}
                 ]
             },
             {
@@ -68,7 +105,7 @@ module.exports = merge(common, {
                             publicPath: '/'
                         }
                     },
-                    {loader: 'css-loader'},
+                    {loader: 'happypack/loader?id=css'},
                 ]
             }
         ]
@@ -79,11 +116,25 @@ module.exports = merge(common, {
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new MiniCssExtractPlugin({
-            filename: "css/[name].[contenthash].css",
-            chunkFilename: "[id].css"
+            filename: "[name].[contenthash].css",
+            chunkFilename: "css/[name].[contenthash].css"
         }),
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../')
         }),
+        new HappyPack({
+            id: 'js',
+            loaders: ['babel-loader']
+        }),
+        new HappyPack({
+            id: 'css',
+            cache: false,
+            loaders: ['css-loader']
+        }),
+        new HappyPack({
+            id: 'less',
+            cache:false,
+            loaders: ['less-loader']
+        })
     ]
 })
