@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 16:17:25
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-20 11:32:03
+ * @Last Modified time: 2018-08-23 17:08:03
  */
 
 import Vue from 'vue';
@@ -29,7 +29,7 @@ const router =  new Router({
         {
             path: '/about',
             name: 'AboutPage',
-            component: AboutPage
+            component: AboutPage,
         },
         {
             path: '/tags',

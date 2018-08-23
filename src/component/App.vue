@@ -2,15 +2,15 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-20 12:07:07
+ * @Last Modified time: 2018-08-23 19:20:43
  */
 
 <template>
     <div class="app">
         <div class="top-top"></div>
-        <el-container style="width: 80%; min-width: 1100px; margin: 0 auto; min-height: 100%">
+        <el-container style="width: 90%; min-width: 1100px; margin: 0 auto; min-height: 100%">
 
-            <el-aside width="205px">
+            <el-aside width="20%">
                 <AsidePage/>
             </el-aside>
 

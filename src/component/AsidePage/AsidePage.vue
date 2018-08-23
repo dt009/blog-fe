@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 15:29:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 10:25:50
+ * @Last Modified time: 2018-08-23 19:21:16
  */
 
 <template>
@@ -45,7 +45,7 @@
         width: 100%;
 
         .aside-top {
-            width: 200px;
+            width: 95%;
             box-shadow: 5px 5px 5px #409eff;
             border: 1px solid #409eff;
             margin-bottom: 30px;

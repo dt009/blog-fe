@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 17:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-16 14:48:47
+ * @Last Modified time: 2018-08-23 19:21:56
  */
 
 <template>
@@ -79,7 +79,7 @@
 
 <style lang="less" scoped>
     .info-page {
-        width: 200px;
+        width: 95%;
         border: 1px solid #409eff;
         box-shadow: 5px 5px 5px #409eff;
         margin-bottom: 20px;
@@ -88,7 +88,7 @@
 
         .avatar-box {
             height: 200px;
-            width: 200px;
+            width: 100%;
             position: relative;
 
             img {
