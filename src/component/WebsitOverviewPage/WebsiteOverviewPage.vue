@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 17:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-23 19:21:56
+ * @Last Modified time: 2018-08-24 15:24:26
  */
 
 <template>
@@ -79,34 +79,29 @@
 
 <style lang="less" scoped>
     .info-page {
-        width: 95%;
-        border: 1px solid #409eff;
-        box-shadow: 5px 5px 5px #409eff;
-        margin-bottom: 20px;
-        background: #f2f2f2;
-        padding-bottom: 10px;
+
 
         .avatar-box {
-            height: 200px;
+            height: 100px;
             width: 100%;
             position: relative;
 
             img {
-                width: 180px;
-                height: 180px;
+                width: 80px;
+                height: 80px;
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
-
         }
 
         .user-name {
             h2 {
-                height: 30px;
+                height: 20px;
                 text-align: center;
-                line-height: 30px;
+                line-height: 20px;
+                font-size: 16px;
                 letter-spacing: 5px;
             }
 
@@ -121,7 +116,8 @@
                 li {
                     padding: 0 5px;
                     height: 20px;
-                    line-height: 20px;
+                    font-size: 12px;
+                    line-height: 24px;
                 }
             }
 
@@ -136,6 +132,7 @@
                 display: flex;
                 margin: 0 auto;
                 width: 150px;
+                padding: 10px;
 
                 li {
                     flex: 1;

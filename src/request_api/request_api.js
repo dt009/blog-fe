@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-20 11:03:53
+ * @Last Modified time: 2018-08-24 14:43:44
  */
 
 let requestUrl = '';
@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
     requestUrl = `//${window.location.host}`;
 }
 else {
-    requestUrl = '//localhost:18080'
+    requestUrl = '//localhost:8080'
 }
 
 console.log('请求的地址 host ===>> ', requestUrl);

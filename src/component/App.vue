@@ -2,16 +2,25 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-23 19:20:43
+ * @Last Modified time: 2018-08-24 15:08:07
  */
 
 <template>
     <div class="app">
-        <div class="top-top"></div>
+        <el-container style="width: 100%">
+            <el-header style="width: 100%; height: 2px; background: #409eff;"></el-header>
+            <el-container style="width: 90%; min-width: 1100px; margin: 0 auto; min-height: 100%;">
+                <el-aside width="20%" style="padding-right: 5px;">
+                    <AsidePage/>
+                </el-aside>
+            </el-container>
+
+        </el-container>
+        <!-- <div class="top-top"></div>
         <el-container style="width: 90%; min-width: 1100px; margin: 0 auto; min-height: 100%">
 
             <el-aside width="20%">
-                <AsidePage/>
+
             </el-aside>
 
             <el-container>
@@ -24,7 +33,7 @@
                     </keep-alive>
                 </el-main>
             </el-container>
-        </el-container>
+        </el-container> -->
     </div>
 </template>
 
@@ -78,13 +87,11 @@
         height: 100%;
         width: 100%;
         background: #f2f2f2;
-        display: flex;
-        flex-direction: column;
-
         .top-top {
-            height: 2px;
+            height: 5px;
             width: 100%;
             background: #409eff;
         }
+
     }
 </style>

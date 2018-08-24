@@ -2,13 +2,11 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:44:35
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-24 10:30:34
+ * @Last Modified time: 2018-08-24 14:46:48
  */
 
 import Vue from 'vue';
 import APP from 'comp/APP.vue';
-import setMetaEl from './responsive/meta';
-import setHtmlFont from './responsive/font';
 
 import './style/reset.less';
 import './style/layout.less';
