@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 14:48:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-20 11:39:45
+ * @Last Modified time: 2018-08-24 18:52:38
  */
 
 <template>
@@ -11,47 +11,67 @@
         <div class="blog-list-box">
             <el-table
                 :data="showArticleList"
-                stripe max-height="100%"
-                height="400"
-                style="width: 100%; flex: 1; overflow: auto; margin-bottom: 10px;"
-                :row-style="{cursor: 'pointer'}"
-                :border="true"
-                @row-click="goToDetails"
-            >
-                <el-table-column label="#" prop="sign" width="60" fixed="left" />
-
-                <el-table-column label="标题" prop="title" :show-overflow-tooltip="true" width="150" fixed="left"></el-table-column>
-
-                <el-table-column label="简介" :show-overflow-tooltip="true" prop="description" width="370"></el-table-column>
-
-                <el-table-column label="创建日期" prop="date" width="120" />
-
-                <el-table-column label="评论数量" align="right" prop="comment_count" />
-
-                <el-table-column label="分类"  prop="comment_count" fixed="right" :show-overflow-tooltip="true" width="110">
-                    <template slot-scope="scope">
-                        <el-tag
-                            v-for="(category, index) in scope.row.categories"
-                            :key="index"
-                            size="mini"
-                            style="margin-right: 5px;">{{category}}</el-tag>
+                style="width: 100%; margin-bottom: 10px;">
+                <el-table-column type="expand">
+                    <template slot-scope="props">
+                        <el-form label-position="left" inline class="demo-table-expand">
+                            <el-form-item label="上传时间">
+                                <span>{{ props.row.date }}</span>
+                            </el-form-item>
+                            <el-form-item label="博客ID">
+                                <span>{{ props.row.id }}</span>
+                            </el-form-item>
+                            <el-form-item label="标签">
+                                <el-tag size="mini" v-for="(tag, index) in props.row.tags" :key="index">{{tag}}</el-tag>
+                            </el-form-item>
+                            <el-form-item label="分类">
+                                <el-tag size="mini" v-for="(category, index) in props.row.categories" :key="index">{{category}}</el-tag>
+                            </el-form-item>
+                        </el-form>
                     </template>
                 </el-table-column>
+                <el-table-column
+                    label="编号"
+                    prop="sign"
+                    width="100"
+                >
+                </el-table-column>
+                <el-table-column
+                    label="标题"
+                    width="250"
+                    :show-overflow-tooltip="true"
+                    class-name="table-column-blog-title"
+                >
+                    <div slot-scope="scope">
+                        <router-link :to="{name: 'ArticleDetailsPage', params: {filename: scope.row.filename}}">{{scope.row.title}}</router-link>
+                    </div>
+                </el-table-column>
+                <el-table-column
+                    label="描述"
+                    prop="description"
+                    :show-overflow-tooltip="true"
+                >
+                </el-table-column>
 
-                <el-table-column label="标签" prop="tag"  min-width="150" width="200">
-                    <template slot-scope="scope">
-                        <el-tag
-                            v-for="(tag, index) in scope.row.tags"
-                            :key="index"
-                            size="mini"
-                            style="margin-right: 5px;">{{tag}}</el-tag>
-                    </template>
+                <el-table-column
+                    label="评论数量"
+                    prop="comment_count"
+                    width="100"
+                >
+                </el-table-column>
+                <el-table-column
+                    label="操作"
+                    width="150"
+                >
+                    <div slot-scope="scope">
+                        <router-link style="color: #409eff;" :to="{name: 'ArticleDetailsPage', params: {filename: scope.row.filename}}">查看</router-link>
+                    </div>
                 </el-table-column>
             </el-table>
 
             <el-pagination
                 background
-                layout="total, prev, pager, next, ->, sizes"
+                layout="total, prev, pager, next, jumper, ->, sizes"
                 :total="articleTotal"
                 :page-sizes="[7, 8, 10, 15, 20]"
                 :page-size="pageSize"
@@ -68,13 +88,17 @@
         Pagination,
         Table,
         TableColumn,
-        Tag
+        Tag,
+        Form,
+        FormItem
     } from "element-ui";
 
     Vue.use(Pagination);
     Vue.use(Table);
     Vue.use(TableColumn);
     Vue.use(Tag);
+    Vue.use(Form);
+    Vue.use(FormItem);
 
     export default {
         name: "HomePage",
@@ -108,15 +132,6 @@
             handlePageNumberChange(number) {
                 this.$store.commit("changePageNumber", number);
             },
-            goToDetails(row, event, column) {
-
-                this.$router.push({
-                    name: 'ArticleDetailsPage',
-                    params: {
-                        filename: row.filename
-                    }
-                })
-            }
         },
 
         beforeCreate() {
@@ -131,31 +146,50 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        background: #fff;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+
         h2 {
             height: 30px;
             font-size: 18px;
             line-height: 30px;
-            padding-left: 10px;
+            padding-left: 7px;
             border-left: 5px solid #409eff;
         }
+
         .blog-list-box {
             flex: 1;
-            margin: 10px 0;
-            padding: 15px;
-            border: 1px solid #409eff;
-            box-shadow: 5px 5px 5px #409eff;
             display: flex;
             flex-direction: column;
             background: #fff;
-            ul {
-                flex: 1;
-                overflow: auto;
-                li {
-                    height: 40px;
-                    line-height: 40px;
-                    border-bottom: 1px solid #555;
-                }
-            }
+            padding-top: 10px;
+            padding-right: 12px;
         }
     }
+</style>
+<style>
+    .demo-table-expand {
+        font-size: 0;
+    }
+    .demo-table-expand label {
+        width: 90px;
+        color: #99a9bf;
+    }
+    .demo-table-expand .el-form-item {
+        margin-right: 0;
+        margin-bottom: 0;
+        width: 50%;
+    }
+
+    .table-column-blog-title div {
+        cursor: pointer;
+    }
+    .table-column-blog-title div:hover {
+        color: #409eff;
+        text-decoration: underline;
+    }
+
+
 </style>

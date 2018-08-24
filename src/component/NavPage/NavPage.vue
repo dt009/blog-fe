@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:24:28
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-23 17:05:51
+ * @Last Modified time: 2018-08-24 16:57:06
  */
 
 <template>
@@ -86,9 +86,15 @@
 
 <style lang="less" scoped>
     .nav-page {
+        height: 51px;
 
         .el-menu {
+            height: 100%;
             padding-left: 15px;
+            .el-menu-item {
+                height: 50px;
+                line-height: 50px;
+            }
         }
     }
 </style>
