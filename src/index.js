@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:44:35
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-15 16:03:04
+ * @Last Modified time: 2018-08-24 10:30:34
  */
 
 import Vue from 'vue';
@@ -31,8 +31,6 @@ function vueInit() {
 
 function init() {
     try {
-        // setMetaEl(document, window);
-        // setHtmlFont(),
         vueInit();
     } catch (error) {
         console.log('启动出错, 请检查....');
