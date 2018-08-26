@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:34:14
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 19:40:34
+ * @Last Modified time: 2018-08-26 19:39:35
  */
 
 const mutations = {
@@ -36,7 +36,13 @@ const mutations = {
     changeAllTagsList(state, value) {
         console.log('获取的所有标签的列表 ==>> ', value);
         state.allTagsList = value;
-    }
+    },
+
+    // 修改用户信息
+    changeUserInfoValue(state, value) {
+        console.log('用户信息为 ==>> ', value);
+        state.userInfo = value;
+    },
 }
 
 export default mutations;

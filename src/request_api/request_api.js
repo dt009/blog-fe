@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-24 17:37:58
+ * @Last Modified time: 2018-08-26 19:48:46
  */
 
 let requestUrl = '';
@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
     requestUrl = `//${window.location.host}`;
 }
 else {
-    requestUrl = '//localhost:18080'
+    requestUrl = '//localhost:8080'
 }
 
 console.log('请求的地址 host ===>> ', requestUrl);
@@ -35,7 +35,10 @@ const URL = {
     addBlogArticleUrl: `${requestUrl}/blog/addArticle`,
 
     // 请求博客的具体内容
-    getArticleDetailUrl: `${requestUrl}/get/article/details`
+    getArticleDetailUrl: `${requestUrl}/get/article/details`,
+
+    // 登录请求
+    loginUrl: `${requestUrl}/login`,
 }
 
 export default URL;
