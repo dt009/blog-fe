@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:24:28
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-24 16:57:06
+ * @Last Modified time: 2018-08-27 19:28:06
  */
 
 <template>
@@ -22,7 +22,7 @@
                 <p><span class="font">&#xe618;</span> 首页</p>
             </el-menu-item>
             <el-menu-item
-                :route="{name: 'AboutPage', path: '/about/A', params: {anchor: ' '}}"
+                :route="{name: 'AboutPage', path: '/about', params: {anchor: ' '}}"
                 index="2"
             >
                 <p><span  class="font">&#xe653;</span> 关于</p>
