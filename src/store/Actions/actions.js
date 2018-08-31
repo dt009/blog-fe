@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-26 19:42:48
+ * @Last Modified time: 2018-08-31 11:46:46
  */
 
 import URL from 'api/request_api';
@@ -62,6 +62,18 @@ const actions = {
             let {status, message, data} = fetchData;
             if (status === 'ok') {
                 commit('changeUserInfoValue', data)
+            }
+        }
+    },
+
+    // 获取路由的列表
+    async getRouterList({commit}) {
+        let fetchData = await Fetch.post(URL.getRouterListUrl);
+
+        if(fetchData) {
+            let {status, message, data} = fetchData;
+            if (status === 'ok') {
+                commit('changeRouterList', data)
             }
         }
     }

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-26 19:48:46
+ * @Last Modified time: 2018-08-31 11:44:36
  */
 
 let requestUrl = '';
@@ -26,7 +26,7 @@ const URL = {
     getAllCategoriesUrl: `${requestUrl}/get/categories/allList`,
 
     // 获取全部的 tags 列表
-    getAllTagsUrl: `${requestUrl}/get/tags/allList`,
+    getAllTagsUrl: `${requestUrl}/tags/get/all`,
 
     // 博客文件上传按钮
     uploadBlogUrl: `${requestUrl}/upload/blog`,
@@ -39,6 +39,9 @@ const URL = {
 
     // 登录请求
     loginUrl: `${requestUrl}/login`,
+
+    // 获取路由的列表
+    getRouterListUrl: `${requestUrl}/router/allRouter`,
 }
 
 export default URL;

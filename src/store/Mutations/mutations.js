@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:34:14
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-26 19:39:35
+ * @Last Modified time: 2018-08-31 11:47:44
  */
 
 const mutations = {
@@ -43,6 +43,12 @@ const mutations = {
         console.log('用户信息为 ==>> ', value);
         state.userInfo = value;
     },
+
+    // 改变 routerList 的值
+    changeRouterList(state, value) {
+        console.log('获取的路由列表为 ==>> ', value);
+        state.routerList = value;
+    }
 }
 
 export default mutations;

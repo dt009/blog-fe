@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 15:04:01
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-26 21:02:10
+ * @Last Modified time: 2018-08-31 10:03:52
  */
 
 
@@ -29,7 +29,7 @@ function FetchIntercept(res) {
                 console.log(1111111)
             }
         })
-        return res.json();
+        return res;
     } else {
         return res.json();
     }
