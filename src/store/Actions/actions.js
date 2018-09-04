@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-31 11:46:46
+ * @Last Modified time: 2018-09-03 10:30:10
  */
 
 import URL from 'api/request_api';
@@ -73,6 +73,7 @@ const actions = {
         if(fetchData) {
             let {status, message, data} = fetchData;
             if (status === 'ok') {
+                // data = [data[0]];
                 commit('changeRouterList', data)
             }
         }

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-31 11:44:36
+ * @Last Modified time: 2018-09-04 12:04:17
  */
 
 let requestUrl = '';
@@ -42,6 +42,9 @@ const URL = {
 
     // 获取路由的列表
     getRouterListUrl: `${requestUrl}/router/allRouter`,
+
+    // 添加路由的url
+    addRouterUrl: `${requestUrl}/router/setRouter`
 }
 
 export default URL;

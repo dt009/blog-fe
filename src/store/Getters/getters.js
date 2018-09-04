@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:33:20
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-17 15:52:22
+ * @Last Modified time: 2018-09-04 12:13:55
  */
 
 
@@ -39,6 +39,18 @@ const getters = {
         });
 
         return showList[pageNumber - 1];
+    },
+
+    // 获取展示路由的信息列表
+    getShowRouterList(state) {
+        let showList = state.routerList.map((item, index) => {
+            return {
+                ...item,
+                sign: index + 1,
+                popoverShow: false
+            }
+        })
+        return showList;
     }
 }
 
