@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-05 10:49:24
+ * @Last Modified time: 2018-09-05 11:09:06
  */
 
 let requestUrl = '';
@@ -47,7 +47,10 @@ const URL = {
     addRouterUrl: `${requestUrl}/router/setRouter`,
 
     // 删除路由的操作 url
-    deleteRouterUrl: `${requestUrl}/router/deleteRouter`
+    deleteRouterUrl: `${requestUrl}/router/deleteRouter`,
+
+    // 修改 路由的操作 url
+    updateRouterUrl: `${requestUrl}/router/updateRouter`
 }
 
 export default URL;

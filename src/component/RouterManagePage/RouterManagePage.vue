@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-05 10:53:06
+ * @Last Modified time: 2018-09-05 11:15:37
  */
 
 <template>
@@ -37,6 +37,7 @@
                     </el-form-item>
                 </el-form>
             </el-dialog>
+
             <el-table
                 :data="showList"
                 :border="true"
@@ -106,6 +107,11 @@
             showList() {
                 console.log(this.$store.getters.getShowRouterList);
                 return this.$store.getters.getShowRouterList;
+            },
+            dialogForm() {
+                return this.dialogType === 'add'
+                            ? this.dialogNewForm
+                            : this.updateRouterForm
             }
         },
         beforeCreate () {
@@ -165,13 +171,15 @@
             return {
                 showPopover: false,
                 isDialogShow: false,
-                dialogForm: {
+                dialogNewForm: {
                     name: '',
                     label: '',
                     path: '',
                     icon: '',
                     type: 'other'
                 },
+                updateRouterForm: {},
+                dialogType: 'add',
                 dialogFormRules: {
                     name: [
                         {validator: validateName, trigger: 'blur'}
@@ -192,6 +200,9 @@
             // 修改路由
             handleChangeRouter(value) {
                 console.log(value);
+                this.dialogType = 'update';
+                this.updateRouterForm = value;
+                this.isDialogShow = true;
             },
 
             // 删除路由
@@ -212,6 +223,7 @@
             // 打开 dialog
             handleAddNewRouter() {
                 console.log('新增一个路由');
+                this.dialogType = 'add';
                 this.isDialogShow = true;
             },
             // 隐藏 dialog
@@ -223,16 +235,19 @@
             // 添加路由的请求操作
             handleAddRouter(value) {
                 console.log('表单数据: ==>> ', this.dialogForm);
+
+                let url = this.dialogType === 'add' ? URL.addRouterUrl : URL.updateRouterUrl;
+
                 this.$refs[value].validate(valid => {
                     if (valid) {
-                        Fetch.post(URL.addRouterUrl, this.dialogForm)
+                        Fetch.post(url, this.dialogForm)
                             .then(res => {
                                 console.log(res);
                                 let {status, message, data} = res;
                                 if (status === 'ok') {
                                     this.$refs[value].resetFields();
                                     this.isDialogShow = false;
-                                    Message.success('添加成功');
+                                    Message.success(message);
                                     this.$store.dispatch('getRouterList');
                                 }
                             })
