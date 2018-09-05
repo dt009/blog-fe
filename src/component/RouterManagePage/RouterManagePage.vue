@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-04 12:24:28
+ * @Last Modified time: 2018-09-05 10:53:06
  */
 
 <template>
@@ -189,21 +189,38 @@
             }
         },
         methods: {
+            // 修改路由
             handleChangeRouter(value) {
                 console.log(value);
             },
+
+            // 删除路由
             handleDeleteRouter(index, value) {
                 console.log(index, value);
-                value.popover = false;
+                Fetch.post(URL.deleteRouterUrl, value)
+                    .then(res => {
+                        let {status, message, data} = res;
+                        if (status === 'ok') {
+                            value.popover = false;
+                            Message.success(message);
+                            this.$store.dispatch('getRouterList');
+                        }
+                    })
+
             },
+
+            // 打开 dialog
             handleAddNewRouter() {
                 console.log('新增一个路由');
                 this.isDialogShow = true;
             },
+            // 隐藏 dialog
             handleHideDialog(value) {
                 this.$refs[value].resetFields();
                 this.isDialogShow = false;
             },
+
+            // 添加路由的请求操作
             handleAddRouter(value) {
                 console.log('表单数据: ==>> ', this.dialogForm);
                 this.$refs[value].validate(valid => {
