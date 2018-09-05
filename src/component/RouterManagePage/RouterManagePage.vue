@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-05 11:15:37
+ * @Last Modified time: 2018-09-05 11:59:18
  */
 
 <template>
@@ -33,7 +33,7 @@
                     </el-form-item>
                     <el-form-item :label-width="'120px'">
                         <el-button @click="handleHideDialog('dialogForm')">取消</el-button>
-                        <el-button type="primary" @click="handleAddRouter('dialogForm')">确认添加</el-button>
+                        <el-button type="primary" :loading="isDialogLoading" @click="handleAddRouter('dialogForm')">{{dialogType === 'add' ? '确认添加' : '确认修改'}}</el-button>
                     </el-form-item>
                 </el-form>
             </el-dialog>
@@ -41,6 +41,8 @@
             <el-table
                 :data="showList"
                 :border="true"
+                stripe
+                :header-cell-style="{background: '#f5f7fa'}"
             >
                 <el-table-column label="" prop="sign" width="50">
 
@@ -61,7 +63,7 @@
                             <p><i style="color: #0f0" class="el-icon-warning"></i> 确定要删除这条信息吗?</p>
                             <div style="text-align: right; margin: 0">
                                 <el-button size="mini" type="text" @click="scope.row.popover = false">取消</el-button>
-                                <el-button type="primary" size="mini" @click="handleDeleteRouter(scope.$index, scope.row)">确定</el-button>
+                                <el-button type="primary" :loading="isDeleteLoading" size="mini" @click="handleDeleteRouter(scope.$index, scope.row)">确定</el-button>
                             </div>
                             <el-button size="small" type="text" @click="scope.row.popover = true" slot="reference">删除</el-button>
                         </el-popover>
@@ -118,6 +120,8 @@
             this.$store.dispatch('getRouterList');
         },
         data() {
+
+            // dialog 表单中 name 的验证规则
             let validateName = (rule, value, callback) => {
                 value = value.trim();
                 let reg = /^[A-Z][a-zA-Z]+Page$/;
@@ -131,6 +135,8 @@
                     callback();
                 }
             };
+
+            // dialog 表单中 path 的验证规则
             let validatePath = (rule, value, callback) => {
                 value = value.trim();
                 let reg = /^\/[a-zA-z]+/;
@@ -145,6 +151,7 @@
                 }
             }
 
+            // dialog 表单中 Label 的验证规则
             let validateLabel = (rule, value, callback) => {
                 value = value.trim();
                 if (!value) {
@@ -157,6 +164,8 @@
                     callback();
                 }
             }
+
+            // dialog 表单中 Icon 的验证规则
             let validateIcon = (rule, value, callback) => {
                 value = value.trim();
                 let reg = /^(&#).+;$/;
@@ -169,8 +178,9 @@
             }
 
             return {
-                showPopover: false,
-                isDialogShow: false,
+                isDialogShow: false, // dialog 是否展示
+                // 添加 router 时 表单的数据
+                isDeleteLoading: false, // 删除 router 时 请求 loading
                 dialogNewForm: {
                     name: '',
                     label: '',
@@ -178,8 +188,10 @@
                     icon: '',
                     type: 'other'
                 },
-                updateRouterForm: {},
-                dialogType: 'add',
+                isDialogLoading: false, // dialog 里确认按钮是否 loading 中
+                updateRouterForm: {}, // 修改 router 时的表单数据
+                dialogType: 'add', // dialog 是添加 router 还是更新 router
+                // 表单的验证规则
                 dialogFormRules: {
                     name: [
                         {validator: validateName, trigger: 'blur'}
@@ -208,24 +220,30 @@
             // 删除路由
             handleDeleteRouter(index, value) {
                 console.log(index, value);
+
+                this.isDeleteLoading = true;
+
                 Fetch.post(URL.deleteRouterUrl, value)
                     .then(res => {
                         let {status, message, data} = res;
                         if (status === 'ok') {
+                            this.isDeleteLoading = false;
                             value.popover = false;
                             Message.success(message);
                             this.$store.dispatch('getRouterList');
                         }
+                        else {
+                            this.isDeleteLoading = false;
+                        }
                     })
-
             },
 
             // 打开 dialog
             handleAddNewRouter() {
-                console.log('新增一个路由');
                 this.dialogType = 'add';
                 this.isDialogShow = true;
             },
+
             // 隐藏 dialog
             handleHideDialog(value) {
                 this.$refs[value].resetFields();
@@ -234,21 +252,25 @@
 
             // 添加路由的请求操作
             handleAddRouter(value) {
-                console.log('表单数据: ==>> ', this.dialogForm);
 
                 let url = this.dialogType === 'add' ? URL.addRouterUrl : URL.updateRouterUrl;
 
                 this.$refs[value].validate(valid => {
                     if (valid) {
+                        this.isDialogLoading = true;
                         Fetch.post(url, this.dialogForm)
                             .then(res => {
                                 console.log(res);
                                 let {status, message, data} = res;
                                 if (status === 'ok') {
+                                    this.isDialogLoading = false;
                                     this.$refs[value].resetFields();
                                     this.isDialogShow = false;
                                     Message.success(message);
                                     this.$store.dispatch('getRouterList');
+                                }
+                                else {
+                                    this.isDialogLoading = false;
                                 }
                             })
                     }
