@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-05 11:09:06
+ * @Last Modified time: 2018-09-06 11:26:12
  */
 
 let requestUrl = '';
@@ -25,9 +25,6 @@ const URL = {
     // 获取全部的分类
     getAllCategoriesUrl: `${requestUrl}/get/categories/allList`,
 
-    // 获取全部的 tags 列表
-    getAllTagsUrl: `${requestUrl}/tags/get/all`,
-
     // 博客文件上传按钮
     uploadBlogUrl: `${requestUrl}/upload/blog`,
 
@@ -40,17 +37,27 @@ const URL = {
     // 登录请求
     loginUrl: `${requestUrl}/login`,
 
+    /**
+     * @description 路由相关
+     */
     // 获取路由的列表
-    getRouterListUrl: `${requestUrl}/router/allRouter`,
+    getRouterListUrl: `${requestUrl}/router/get/allRouter`,
 
     // 添加路由的url
-    addRouterUrl: `${requestUrl}/router/setRouter`,
+    addRouterUrl: `${requestUrl}/router/add/router`,
 
     // 删除路由的操作 url
-    deleteRouterUrl: `${requestUrl}/router/deleteRouter`,
+    deleteRouterUrl: `${requestUrl}/router/delete/router`,
 
     // 修改 路由的操作 url
-    updateRouterUrl: `${requestUrl}/router/updateRouter`
+    updateRouterUrl: `${requestUrl}/router/update/router`,
+
+    /**
+     * @description 标签相关
+     */
+
+     // 获取全部的 tags 列表
+    getAllTagsUrl: `${requestUrl}/tags/get/allTags`,
 }
 
 export default URL;

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-05 11:47:28
+ * @Last Modified time: 2018-09-06 11:29:30
  */
 
 import URL from 'api/request_api';
@@ -50,7 +50,7 @@ const actions = {
             background: 'rgba(0, 0, 0, 0.7)'
         });
 
-        let fetchData = await Fetch.get(URL.getAllCategoriesUrl);
+        let fetchData = await Fetch.post(URL.getAllCategoriesUrl);
 
         if (fetchData) {
             let {status, message, data} = fetchData;
@@ -74,7 +74,7 @@ const actions = {
             background: 'rgba(0, 0, 0, 0.7)'
         });
 
-        let fetchData = await Fetch.get(URL.getAllTagsUrl);
+        let fetchData = await Fetch.post(URL.getAllTagsUrl);
 
         if (fetchData) {
             let {status, message, data} = fetchData;

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:24:28
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-31 11:08:58
+ * @Last Modified time: 2018-09-06 10:13:00
  */
 
 <template>
@@ -42,7 +42,7 @@
             <el-submenu style="height: 50px, line-hight: 50px" index="5">
                 <span class="item-title" style="height: 50px; line-height: 50px;" slot="title"><span  class="font">&#xe653;</span> 后台管理系统</span>
                 <el-menu-item :route="{name: 'RouterManagePage', params: {}}" index="5-1">路由管理</el-menu-item>
-                <el-menu-item index="5-2">标签管理</el-menu-item>
+                <el-menu-item :route="{name: 'TagsManagePage', params: {}}" index="5-2">标签管理</el-menu-item>
                 <el-menu-item index="5-3">分类管理</el-menu-item>
                 <el-menu-item index="5-4">文章管理</el-menu-item>
             </el-submenu>

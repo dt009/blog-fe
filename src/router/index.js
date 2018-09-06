@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 16:17:25
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-31 11:01:24
+ * @Last Modified time: 2018-09-06 10:12:14
  */
 
 import Vue from 'vue';
@@ -16,6 +16,8 @@ const UploadPage = () => import(/* webpackChunkName: 'UploadPage'*/ '../componen
 const ArticleDetailsPage = () => import(/* webpackChunkName: 'ArticleDetailsPage'*/ '../component/ArticleDetailsPage/ArticleDetailsPage.vue');
 const LoginPage = () => import(/* webpackChunkName: 'LoginPage'*/ '../component/LoginPage/LoginPage.vue');
 const RouterManagePage = () => import(/* webpackChunkName: 'RouterManagePage'*/ '../component/RouterManagePage/RouterManagePage.vue');
+const TagsManagePage = () => import(/* webpackChunkName: 'TagsManagePage'*/ '../component/TagsManagePage/TagsManagePage.vue');
+
 
 
 Vue.use(Router);
@@ -57,6 +59,11 @@ const router =  new Router({
             path: '/router_manage',
             name: 'RouterManagePage',
             component: RouterManagePage
+        },
+        {
+            path: '/tags_manage',
+            name: 'TagsManagePage',
+            component: TagsManagePage
         }
     ]
 })

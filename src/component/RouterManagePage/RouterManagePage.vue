@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-05 11:59:18
+ * @Last Modified time: 2018-09-06 11:44:23
  */
 
 <template>
@@ -10,7 +10,7 @@
         <h2>路由管理</h2>
         <div class="page-main">
             <el-button @click="handleAddNewRouter" size="small" type="primary" icon="el-icon-plus">新增一个路由</el-button>
-            <el-dialog :visible.sync="isDialogShow" title="新增路由">
+            <el-dialog :visible.sync="isDialogShow" :title="dialogType === 'add' ? '新增路由' : '修改路由'">
                 <el-form :model="dialogForm" status-icon :rules="dialogFormRules" ref="dialogForm">
                     <el-form-item label="路由名称" :label-width="'120px'" xsize="small" prop="name">
                         <el-input style="width: 400px" v-model="dialogForm.name" auto-complete="off" placeholder="路由名称 eg: HomePage"></el-input>
