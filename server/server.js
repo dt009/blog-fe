@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 11:10:08
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-23 16:58:58
+ * @Last Modified time: 2018-09-07 10:09:31
  */
 
 const config = require('../config/config');
@@ -29,4 +29,4 @@ app.use(hotMiddleware(compiler));
 
 app.listen(config.port)
 
-console.log('http://loaclhost:' + config.port);
+console.log('http://localhost:' + config.port);

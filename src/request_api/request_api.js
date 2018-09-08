@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-06 11:26:12
+ * @Last Modified time: 2018-09-07 11:33:04
  */
 
 let requestUrl = '';
@@ -58,6 +58,15 @@ const URL = {
 
      // 获取全部的 tags 列表
     getAllTagsUrl: `${requestUrl}/tags/get/allTags`,
+
+    // 添加标签
+    addTagsUrl: `${requestUrl}/tags/add/tags`,
+
+    // 更新标签
+    updateTagsUrl: `${requestUrl}/tags/update/tags`,
+
+    // 删除标签
+    deleteTagsUrl: `${requestUrl}/tags/delete/tags`
 }
 
 export default URL;

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 15:04:01
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-31 10:03:52
+ * @Last Modified time: 2018-09-08 21:23:06
  */
 
 
@@ -21,7 +21,7 @@ let myHeaders = new Headers({
  * @constructor
  */
 function FetchIntercept(res) {
-    if (res.status != 200) {
+    if (res.status !== 200) {
         // 请求失败的错误处理
         MessageBox.alert(res.status, '请求出错', {
             confirmButtonText: 'OK',

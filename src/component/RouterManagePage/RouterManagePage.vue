@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-06 11:44:23
+ * @Last Modified time: 2018-09-08 21:22:46
  */
 
 <template>
@@ -10,37 +10,47 @@
         <h2>路由管理</h2>
         <div class="page-main">
             <el-button @click="handleAddNewRouter" size="small" type="primary" icon="el-icon-plus">新增一个路由</el-button>
+            <!-- dialog -->
             <el-dialog :visible.sync="isDialogShow" :title="dialogType === 'add' ? '新增路由' : '修改路由'">
+                <!-- dialog 里嵌套的 form -->
                 <el-form :model="dialogForm" status-icon :rules="dialogFormRules" ref="dialogForm">
+
                     <el-form-item label="路由名称" :label-width="'120px'" xsize="small" prop="name">
                         <el-input style="width: 400px" v-model="dialogForm.name" auto-complete="off" placeholder="路由名称 eg: HomePage"></el-input>
                     </el-form-item>
+
                     <el-form-item label="路由路径" :label-width="'120px'" size="small" prop="path">
                         <el-input style="width: 400px" v-model="dialogForm.path" auto-complete="off" placeholder="路由的路径 eg: /home"></el-input>
                     </el-form-item>
+
                     <el-form-item label="路由页面" :label-width="'120px'" size="small" prop="label">
                         <el-input style="width: 400px" v-model="dialogForm.label" auto-complete="off" placeholder="页面名称: eg: 主页"></el-input>
                     </el-form-item>
+
                     <el-form-item label="路由展示icon" :label-width="'120px'" size="small" prop="icon">
                         <el-input style="width: 400px" v-model="dialogForm.icon" auto-complete="off" placeholder="页面图标 eg: &#xe653;"></el-input>
                         <span style="color: #509eff;" class="font" v-html="dialogForm.icon"></span>
                     </el-form-item>
+
                     <el-form-item label="路由的分类" :label-width="'120px'" size="small">
                         <el-radio-group v-model="dialogForm.type">
                             <el-radio label="other"></el-radio>
                             <el-radio label="own"></el-radio>
                         </el-radio-group>
                     </el-form-item>
+
                     <el-form-item :label-width="'120px'">
-                        <el-button @click="handleHideDialog('dialogForm')">取消</el-button>
-                        <el-button type="primary" :loading="isDialogLoading" @click="handleAddRouter('dialogForm')">{{dialogType === 'add' ? '确认添加' : '确认修改'}}</el-button>
+                        <el-button @click="handleHideDialog('dialogForm')" :disabled="isDialogLoading">取消</el-button>
+                        <el-button type="primary" :loading="isDialogLoading" @click="handleAddAndUpdateRouter('dialogForm')">{{dialogType === 'add' ? '确认添加' : '确认修改'}}</el-button>
                     </el-form-item>
+
                 </el-form>
+
             </el-dialog>
 
+            <!-- table 展示 tags 数据 -->
             <el-table
                 :data="showList"
-                :border="true"
                 stripe
                 :header-cell-style="{background: '#f5f7fa'}"
             >
@@ -106,14 +116,14 @@
     export default {
         name: 'RouterMangePage',
         computed: {
+            // table 中展示的 数据
             showList() {
-                console.log(this.$store.getters.getShowRouterList);
                 return this.$store.getters.getShowRouterList;
             },
+
+            //  dialog 中 form 需要的数据
             dialogForm() {
-                return this.dialogType === 'add'
-                            ? this.dialogNewForm
-                            : this.updateRouterForm
+                return this.dialogType === 'add' ? this.dialogNewForm : this.updateRouterForm
             }
         },
         beforeCreate () {
@@ -211,7 +221,6 @@
         methods: {
             // 修改路由
             handleChangeRouter(value) {
-                console.log(value);
                 this.dialogType = 'update';
                 this.updateRouterForm = value;
                 this.isDialogShow = true;
@@ -219,7 +228,6 @@
 
             // 删除路由
             handleDeleteRouter(index, value) {
-                console.log(index, value);
 
                 this.isDeleteLoading = true;
 
@@ -250,11 +258,12 @@
                 this.isDialogShow = false;
             },
 
-            // 添加路由的请求操作
-            handleAddRouter(value) {
+            // 添加和修改路由的请求操作
+            handleAddAndUpdateRouter(value) {
 
                 let url = this.dialogType === 'add' ? URL.addRouterUrl : URL.updateRouterUrl;
 
+                // 验证
                 this.$refs[value].validate(valid => {
                     if (valid) {
                         this.isDialogLoading = true;
@@ -264,9 +273,8 @@
                                 let {status, message, data} = res;
                                 if (status === 'ok') {
                                     this.isDialogLoading = false;
-                                    this.$refs[value].resetFields();
-                                    this.isDialogShow = false;
                                     Message.success(message);
+                                    this.handleHideDialog();
                                     this.$store.dispatch('getRouterList');
                                 }
                                 else {
