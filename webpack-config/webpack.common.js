@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 16:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-21 17:11:05
+ * @Last Modified time: 2018-09-08 23:44:20
  */
 
 const webpack = require('webpack');
@@ -76,7 +76,8 @@ module.exports = {
         new webpack.HashedModuleIdsPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            title: config.pageTitle
+            title: config.pageTitle,
+            favicon: path.resolve(__dirname, '../favicon.ico')
         }),
         new VueLoaderPlugin(),
         new HappyPack({

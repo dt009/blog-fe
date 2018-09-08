@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-24 17:25:58
+ * @Last Modified time: 2018-09-08 23:48:27
  */
 
 <template>
@@ -21,8 +21,10 @@
                     <el-header style="margin-bottom: 15px; padding: 0; height: 50px; background: #f00;">
                         <NavPage/>
                     </el-header>
-                    <el-main style="padding: 0; background: #fff; margin-bottom: 20px;">
-                        <router-view></router-view>
+                    <el-main style="padding: 0; background: #fff; margin-bottom: 20px; position: relative;">
+                        <transition name="fade">
+                            <router-view style="width: 100%; position: absolute;"></router-view>
+                        </transition>
                     </el-main>
                 </el-container>
 
@@ -82,5 +84,30 @@
         height: 100%;
         width: 100%;
         background: #f2f2f2;
+    }
+</style>
+
+<style>
+    .fade-enter-active {
+        transition: all .5s ease;
+    }
+
+    .fade-leave-active {
+        transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .fade-leave-to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    .fade-enter-to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .fade-enter {
+        transform: translateX(100%);
+        opacity: 0;
     }
 </style>
