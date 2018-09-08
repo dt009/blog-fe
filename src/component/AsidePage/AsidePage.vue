@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 15:29:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 23:53:08
+ * @Last Modified time: 2018-09-09 00:00:42
  */
 
 <template>
@@ -20,10 +20,10 @@
                 </el-radio-group>
             </div>
             <div class="main-content">
-                <el-collapse-transition>
+                <transition name="el-zoom-in-center">
                     <WebsiteOverviewPage v-if="selectTab === 'overview'"/>
                     <div v-if="selectTab === 'list'"> 文章列表</div>
-                </el-collapse-transition>
+                </transition>
             </div>
         </div>
     </div>
@@ -36,7 +36,6 @@
     import {
         RadioGroup,
         RadioButton,
-        CollapseTr
     } from 'element-ui';
 
     Vue.use(RadioGroup);
