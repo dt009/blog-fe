@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 21:22:46
+ * @Last Modified time: 2018-09-08 22:38:52
  */
 
 <template>
@@ -274,7 +274,7 @@
                                 if (status === 'ok') {
                                     this.isDialogLoading = false;
                                     Message.success(message);
-                                    this.handleHideDialog();
+                                    this.handleHideDialog(value);
                                     this.$store.dispatch('getRouterList');
                                 }
                                 else {

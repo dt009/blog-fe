@@ -2,54 +2,54 @@
  * @Author: duantao-ds
  * @Date: 2018-09-06 10:09:11
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 22:38:27
+ * @Last Modified time: 2018-09-08 22:39:30
  */
 
 <template>
     <div class="tags-manage-page">
-        <h2>标签管理</h2>
+        <h2>分类管理</h2>
         <div class="tags-manage-page">
-            <el-button @click="handleAddNewTags" size="small" type="primary" icon="el-icon-plus">新增一个标签</el-button>
+            <el-button @click="handleAddNewCategories" size="small" type="primary" icon="el-icon-plus">新增一个分类</el-button>
 
-            <!-- 添加和修改标签的 dialog -->
-            <el-dialog :visible.sync="isDialogShow" :title="dialogType === 'add' ? '新增标签' : '修改标签' ">
+            <!-- 添加和修改分类的 dialog -->
+            <el-dialog :visible.sync="isDialogShow" :title="dialogType === 'add' ? '新增分类' : '修改分类' ">
 
                 <el-form :model="dialogForm" status-icon :rules="dialogFormRules" ref="dialogForm">
-                    <el-form-item label="标签的 Code" :label-width="'120px'" xsize="small" prop="code">
-                        <el-input style="width: 400px" v-model="dialogForm.code" auto-complete="off" placeholder="标签的 Code eg: test || study"></el-input>
+                    <el-form-item label="分类的 Code" :label-width="'120px'" xsize="small" prop="code">
+                        <el-input style="width: 400px" v-model="dialogForm.code" auto-complete="off" placeholder="分类的 Code eg: test || study"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="标签的 Name" :label-width="'120px'" xsize="small" prop="name">
-                        <el-input style="width: 400px" v-model="dialogForm.name" auto-complete="off" placeholder="标签名称 eg: 测试 || 数据库"></el-input>
+                    <el-form-item label="分类的 Name" :label-width="'120px'" xsize="small" prop="name">
+                        <el-input style="width: 400px" v-model="dialogForm.name" auto-complete="off" placeholder="分类名称 eg: 测试 || 数据库"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="标签的描述" :label-width="'120px'" xsize="small" prop="description">
-                        <el-input style="width: 400px" v-model="dialogForm.description" auto-complete="off" placeholder="标签描述 eg: 这是标签标示测试"></el-input>
+                    <el-form-item label="分类的描述" :label-width="'120px'" xsize="small" prop="description">
+                        <el-input style="width: 400px" v-model="dialogForm.description" auto-complete="off" placeholder="分类描述 eg: 这是分类标示测试"></el-input>
                     </el-form-item>
 
                     <el-form-item :label-width="'120px'">
                         <el-button @click="handleHideDialog('dialogForm')">取消</el-button>
-                        <el-button type="primary" :loading="isDialogLoading" @click="handleAddAndUpdateTags('dialogForm')">{{dialogType === 'add' ? '确认添加' : '确认修改'}}</el-button>
+                        <el-button type="primary" :loading="isDialogLoading" @click="handleAddAndUpdateCategories('dialogForm')">{{dialogType === 'add' ? '确认添加' : '确认修改'}}</el-button>
                     </el-form-item>
                 </el-form>
 
             </el-dialog>
 
-            <!-- 标签的展示 -->
+            <!-- 分类的展示 -->
             <el-table
-                :data="showTagsList"
+                :data="showCategoriesList"
                 stripe
                 :header-cell-style="{background: '#f5f7fa'}"
             >
                 <el-table-column label="" prop="sign" width="50"></el-table-column>
 
-                <el-table-column label="标签 Code" prop="code" width="150"></el-table-column>
+                <el-table-column label="分类 Code" prop="code" width="150"></el-table-column>
 
-                <el-table-column label="标签名称" prop="name" width="200"></el-table-column>
+                <el-table-column label="分类名称" prop="name" width="200"></el-table-column>
 
                 <el-table-column label="使用次数" prop="used_count" width="100"></el-table-column>
 
-                <el-table-column label="标签描述" prop="description" :show-overflow-tooltip="true"></el-table-column>
+                <el-table-column label="分类描述" prop="description" :show-overflow-tooltip="true"></el-table-column>
 
                 <el-table-column label="预览" width="200">
                     <div slot-scope="scope">
@@ -112,13 +112,13 @@
     Vue.use(Tooltip);
 
     export default {
-        name: 'TagsManagePage',
+        name: 'CategoriesManagePage',
 
         computed: {
 
             // table 展示的 tag的列表
-            showTagsList() {
-                return this.$store.getters.getShowTagsList;
+            showCategoriesList() {
+                return this.$store.getters.getShowCategoriesList;
             },
 
             // dialog 的 form 数据
@@ -134,7 +134,7 @@
                 value = value.trim();
                 let reg = /^[a-zA-Z]{2,10}$/;
                 if (!value) {
-                    callback(new Error('标签的 code 不能为空'));
+                    callback(new Error('分类的 code 不能为空'));
                 }
                 else if (!reg.test(value)){
                     callback(new Error('code 只能2-10位, 以字母数字下划线组成'));
@@ -149,7 +149,7 @@
                 value = value.trim();
                 let reg = /[A-Za-z0-9_\-\u4e00-\u9fa5]{2,8}/;
                 if (!value) {
-                    callback(new Error('标签的名称 不能为空'));
+                    callback(new Error('分类的名称 不能为空'));
                 }
                 else if (!reg.test(value)){
                     callback(new Error('code 只能2-8位, 以字母数字下划线和汉字组成'));
@@ -164,7 +164,7 @@
                 value = value.trim();
                 let reg = /[A-Za-z0-9_\-\u4e00-\u9fa5]{2,50}/;
                 if (value && !reg.test(value)){
-                    callback(new Error('标签的描述只能2-50位, 以字母数字下划线和汉字组成'));
+                    callback(new Error('分类的描述只能2-50位, 以字母数字下划线和汉字组成'));
                 }
                 else{
                     callback();
@@ -173,14 +173,14 @@
 
             return {
                 dialogType: 'add', // dialog里面表单的类型
-                // 添加标签的的 form 数据
+                // 添加分类的的 form 数据
                 dialogAddForm: {
                     code: '',
                     name: '',
                     used_count: 0,
                     description: ''
                 },
-                // 修改标签的 from 数据
+                // 修改分类的 from 数据
                 dialogUpdateFrom: {},
                 // dialog 的表单验证
                 dialogFormRules: {
@@ -201,12 +201,12 @@
         },
 
         beforeCreate () {
-            this.$store.dispatch('getAllTagsList');
+            this.$store.dispatch('getAllCategoriesList');
         },
 
         methods: {
             // 展示 dialog
-            handleAddNewTags() {
+            handleAddNewCategories() {
                 this.dialogType = 'add';
                 this.isDialogShow = true;
             },
@@ -222,33 +222,33 @@
 
                 if (size >= 0 && size <= 5) {
                     return {
-                        size: 'mini',
+                        size: 'small',
                         type: 'danger'
                     }
                 }
                 else if (size > 5 && size <= 20) {
                     return {
-                        size: 'small',
+                        size: 'medium',
                         type: 'info'
                     }
                 }
                 else if (szie > 20 && size <= 50) {
                     return {
-                        size: 'medium',
+                        size: '',
                         type: 'success'
                     }
                 }
                 else {
                     return {
                         size: '',
-                        type: 'warning'
+                        type: ''
                     }
                 }
             },
 
-            // 添加标签和修改
-            handleAddAndUpdateTags(value) {
-                let url = this.dialogType === 'add' ? URL.addTagsUrl : URL.updateTagsUrl;
+            // 添加分类和修改
+            handleAddAndUpdateCategories(value) {
+                let url = this.dialogType === 'add' ? URL.addCategoriesUrl : URL.updateCategoriesUrl;
 
                 this.$refs[value].validate(valid => {
 
@@ -263,7 +263,7 @@
                                     Message.success(message);
                                     this.handleHideDialog(value); // 关闭 dialog
 
-                                    this.$store.dispatch('getAllTagsList');
+                                    this.$store.dispatch('getAllCategoriesList');
                                 }
                                 else {
                                     this.isDialogLoading = false;
@@ -276,26 +276,26 @@
                 })
             },
 
-            // 修改标签
+            // 修改分类
             handleChangeTag(value) {
                 this.dialogType = 'update';
                 this.dialogUpdateFrom = value;
                 this.isDialogShow = true;
             },
 
-            // 删除标签
+            // 删除分类
             handleDeleteTag(index, value) {
 
                 this.isDeleteLoading = true;
 
-                Fetch.post(URL.deleteTagsUrl, value)
+                Fetch.post(URL.deleteCategoriesUrl, value)
                     .then(res => {
                         let {status, message, data} = res;
                         if (status === 'ok') {
                             this.isDeleteLoading = false;
                             value.popover = false;
                             Message.success(message);
-                            this.$store.dispatch('getAllTagsList');
+                            this.$store.dispatch('getAllCategoriesList');
                         }
                         else {
                             this.isDeleteLoading = false;

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-07 11:33:04
+ * @Last Modified time: 2018-09-08 22:18:33
  */
 
 let requestUrl = '';
@@ -66,7 +66,23 @@ const URL = {
     updateTagsUrl: `${requestUrl}/tags/update/tags`,
 
     // 删除标签
-    deleteTagsUrl: `${requestUrl}/tags/delete/tags`
+    deleteTagsUrl: `${requestUrl}/tags/delete/tags`,
+
+    /**
+     * @description 分类相关
+     */
+
+     // 获取全部的 categories 列表
+     getAllCategoriesUrl: `${requestUrl}/categories/get/allCategories`,
+
+     // 添加分类
+     addCategoriesUrl: `${requestUrl}/categories/add/categories`,
+
+     // 更新分类
+     updateCategoriesUrl: `${requestUrl}/categories/update/categories`,
+
+     // 删除分类
+     deleteCategoriesUrl: `${requestUrl}/categories/delete/categories`,
 }
 
 export default URL;

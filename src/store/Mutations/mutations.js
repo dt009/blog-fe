@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:34:14
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-03 10:19:10
+ * @Last Modified time: 2018-09-08 22:22:52
  */
 
 const mutations = {
@@ -28,7 +28,7 @@ const mutations = {
 
     // 改变 allCategoriesList 的值
     changeAllCategoriesList(state, value) {
-        console.log('获取的分类标签列表为 ==>> ', value);
+        console.log('获取的分类列表为 ==>> ', value);
         state.allCategoriesList = value;
     },
 

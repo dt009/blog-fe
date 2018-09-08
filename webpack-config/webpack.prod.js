@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 14:57:24
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-21 17:21:37
+ * @Last Modified time: 2018-09-08 22:20:29
  */
 
 const merge = require('webpack-merge');
@@ -32,7 +32,7 @@ module.exports = merge(common, {
     },
 
     output: {
-        filename: '[name].[contenthash].js',
+        filename: 'js/[name].[contenthash].js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/'
     },

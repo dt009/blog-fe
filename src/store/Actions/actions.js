@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-06 11:29:30
+ * @Last Modified time: 2018-09-08 22:23:15
  */
 
 import URL from 'api/request_api';
@@ -40,7 +40,7 @@ const actions = {
         }
     },
 
-    // 请求获取所有的分类标签列表
+    // 请求获取所有的 categories 列表
     async getAllCategoriesList({commit}) {
 
         let loadingInstance = Loading.service({
