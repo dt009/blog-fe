@@ -10,6 +10,7 @@
         <h2>站点基本信息管理</h2>
 
         <div class="website-base-info-main">
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="handleEditInfo">编辑</el-button>
             <!-- 信息编辑 -->
             <el-dialog :visible.sync="isDialogShow" title="编辑信息">
                 <el-form :model="baseInfo" label-position="right" size="small" label-width="100px">
