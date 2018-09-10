@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 16:37:10
+ * @Last Modified time: 2018-09-10 16:55:47
  */
 
 <template>
@@ -58,7 +58,7 @@
 
                 </el-table-column>
                 <el-table-column label="name" prop="name"></el-table-column>
-                <el-table-column label="path" prop="path" width="250"></el-table-column>
+                <el-table-column label="path" prop="path"></el-table-column>
                 <el-table-column label="label" prop="label" width="120"></el-table-column>
                 <el-table-column label="type" prop="type" width="80"></el-table-column>
                 <el-table-column label="icon" prop="icon" width="150">

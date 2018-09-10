@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:47:49
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 23:48:27
+ * @Last Modified time: 2018-09-10 17:24:27
  */
 
 <template>
@@ -75,6 +75,9 @@
             name() {
                 return this.$store.state.message;
             }
+        },
+        beforeCreate () {
+            this.$store.dispatch('getRouterList');
         }
     }
 </script>

@@ -2,14 +2,13 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 16:17:25
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 16:50:51
+ * @Last Modified time: 2018-09-10 17:46:51
  */
 
 import Vue from 'vue';
 import Router from 'vue-router';
-import { Upload } from 'element-ui';
 
-const HomePage = () => import(/* webpackChunkName: 'HomePage'*/ '../component/HomePage/HomePage.vue');
+const HomePage = () => import(/* webpackChunkName: `${random}`*/ '../component/HomePage/HomePage.vue');
 const AboutPage = () => import(/* webpackChunkName: 'AboutPage'*/ '../component/AboutPage/AboutPage.vue');
 const TagsPage = () => import(/* webpackChunkName: 'TagsPage'*/ '../component/TagsPage/TagsPage.vue');
 const UploadPage = () => import(/* webpackChunkName: 'UploadPage'*/ '../component/UploadPage/UploadPage.vue');
@@ -23,9 +22,6 @@ const UserBaseInfoManagePage = () => import(/* webpackChunkName: 'UserBaseInfoMa
 const BlogArticleManagePage = () => import(/* webpackChunkName: 'BlogArticleManagePage'*/ '../component/BlogArticleManagePage/BlogArticleManagePage.vue');
 const ArticleSearchPage = () => import(/* webpackChunkName: 'ArticleSearchPage'*/ '../component/ArticleSearchPage/ArticleSearchPage.vue');
 const CategoriesPage = () => import(/* webpackChunkName: 'CategoriesManagePage'*/ '../component/CategoriesPage/CategoriesPage.vue');
-
-
-
 
 Vue.use(Router);
 

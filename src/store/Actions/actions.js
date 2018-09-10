@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 22:23:15
+ * @Last Modified time: 2018-09-10 17:23:58
  */
 
 import URL from 'api/request_api';
@@ -129,6 +129,7 @@ const actions = {
             if (status === 'ok') {
                 // data = [data[0]];
                 loadingInstance.close();
+                window.routerList = data;
                 commit('changeRouterList', data)
             }
             else {
