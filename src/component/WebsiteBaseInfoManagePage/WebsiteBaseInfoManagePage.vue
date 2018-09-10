@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-09-10 10:21:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 20:56:19
+ * @Last Modified time: 2018-09-10 20:59:18
  */
 
 <template>
@@ -13,7 +13,7 @@
             <el-button type="primary" icon="el-icon-edit" size="small" @click="handleEditInfo">编辑</el-button>
             <!-- 信息编辑 -->
             <el-dialog :visible.sync="isDialogShow" title="编辑信息">
-                <el-form :model="baseInfo" label-position="right" size="small" label-width="100px">
+                <el-form :model="baseInfo" label-position="right" size="mini" label-width="100px">
                     <el-form-item label="标题: ">
                         <el-input v-model="baseInfo.title" auto-complete="off" style="width: 300px"></el-input>
                     </el-form-item>
@@ -24,10 +24,10 @@
                         <el-input v-for="(item, index) in baseInfo.keyword" :key="index" v-model="baseInfo.keyword[index]"  auto-complete="off" style="width: 300px; margin-top: 10px"></el-input>
                     </el-form-item>
                     <el-form-item v-for="(item, index) in baseInfo.linkUs" :key="index" :label="`联系方式${index + 1}: `">
-                        <el-form :model="baseInfo.linkUs[index]" label-position="right" label-width="50px">
+                        <el-form :model="baseInfo.linkUs[index]" label-position="right" label-width="50px" size="mini">
                             <el-form-item label="icon: ">
                                 <el-input v-model="baseInfo.linkUs[index].icon" auto-complete="off" style="width: 300px"></el-input>
-                                {{`  `}} <span style="color: #409eff;">预览: <span v-html="baseInfo.linkUs[index].icon" style="font-size: 18px" class="font"></span></span>
+                                <span style="color: #409eff;">预览: <span v-html="baseInfo.linkUs[index].icon" style="font-size: 18px" class="font"></span></span>
                             </el-form-item>
                             <el-form-item label="name: ">
                                 <el-input v-model="baseInfo.linkUs[index].name" auto-complete="off" style="width: 300px"></el-input>
