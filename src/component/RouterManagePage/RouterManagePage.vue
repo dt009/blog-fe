@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-31 10:54:32
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 16:55:47
+ * @Last Modified time: 2018-09-10 18:21:41
  */
 
 <template>
@@ -36,6 +36,8 @@
                         <el-radio-group v-model="dialogForm.type">
                             <el-radio label="other"></el-radio>
                             <el-radio label="own"></el-radio>
+                            <el-radio label="not_nav"></el-radio>
+                            <el-radio label="params"></el-radio>
                         </el-radio-group>
                     </el-form-item>
 
