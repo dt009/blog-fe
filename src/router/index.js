@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 16:17:25
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 22:33:17
+ * @Last Modified time: 2018-09-10 16:50:51
  */
 
 import Vue from 'vue';
@@ -18,6 +18,12 @@ const LoginPage = () => import(/* webpackChunkName: 'LoginPage'*/ '../component/
 const RouterManagePage = () => import(/* webpackChunkName: 'RouterManagePage'*/ '../component/RouterManagePage/RouterManagePage.vue');
 const TagsManagePage = () => import(/* webpackChunkName: 'TagsManagePage'*/ '../component/TagsManagePage/TagsManagePage.vue');
 const CategoriesManagePage = () => import(/* webpackChunkName: 'CategoriesManagePage'*/ '../component/CategoriesManagePage/CategoriesManagePage.vue');
+const WebsiteBaseInfoManagePage = () => import(/* webpackChunkName: 'WebsiteBaseInfoMangePage'*/ '../component/WebsiteBaseInfoManagePage/WebsiteBaseInfoManagePage.vue');
+const UserBaseInfoManagePage = () => import(/* webpackChunkName: 'UserBaseInfoManagePage'*/ '../component/UserBaseInfoManagePage/UserBaseInfoManagePage.vue');
+const BlogArticleManagePage = () => import(/* webpackChunkName: 'BlogArticleManagePage'*/ '../component/BlogArticleManagePage/BlogArticleManagePage.vue');
+const ArticleSearchPage = () => import(/* webpackChunkName: 'ArticleSearchPage'*/ '../component/ArticleSearchPage/ArticleSearchPage.vue');
+const CategoriesPage = () => import(/* webpackChunkName: 'CategoriesManagePage'*/ '../component/CategoriesPage/CategoriesPage.vue');
+
 
 
 
@@ -70,7 +76,33 @@ const router =  new Router({
             path: '/categories_manage',
             name: 'CategoriesManagePage',
             component: CategoriesManagePage
-        }
+        },
+        {
+            path: '/website_base_info_manage',
+            name: 'WebsiteBaseInfoManagePage',
+            component: WebsiteBaseInfoManagePage
+        },
+        {
+            path: '/user_base_info_manage',
+            name: 'UserBaseInfoManagePage',
+            component: UserBaseInfoManagePage
+        },
+        {
+            path: '/blog_article_manage',
+            name: 'BlogArticleManagePage',
+            component: BlogArticleManagePage
+        },
+        {
+            path: '/article_search',
+            name: 'ArticleSearchPage',
+            component: ArticleSearchPage
+        },
+        {
+            path: '/categories',
+            name: 'CategoriesPage',
+            component: CategoriesPage
+        },
+
     ]
 })
 
