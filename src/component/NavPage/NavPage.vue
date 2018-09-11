@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:24:28
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 17:25:08
+ * @Last Modified time: 2018-09-11 15:57:50
  */
 
 <template>
@@ -25,7 +25,7 @@
                 <p><span class="font" v-html="router.icon"></span> {{router.label}}</p>
             </el-menu-item>
 
-            <el-submenu style="height: 50px, line-hight: 50px" index="manage">
+            <el-submenu style="height: 50px, line-hight: 50px" index="manage" v-if="userInfo.isLogin || isLogin">
 
                 <span class="item-title" style="height: 50px; line-height: 50px;" slot="title"><span  class="font">&#xe670;</span> 后台管理系统</span>
 
@@ -40,6 +40,9 @@
                 </el-menu-item>
             </el-submenu>
         </el-menu>
+        <div class="logout" v-if="userInfo.isLogin || isLogin" @click="logout">
+            <span class="font">&#xe616;</span>
+        </div>
     </div>
 </template>
 
@@ -49,26 +52,54 @@
     import {
         Menu,
         MenuItem,
-        Submenu
+        Submenu,
+        Button
     } from 'element-ui';
 
     Vue.use(Menu);
     Vue.use(MenuItem);
     Vue.use(Submenu);
+    Vue.use(Button);
 
     export default {
         name: 'NavPage',
         computed: {
             routerList() {
                 return this.$store.getters.getShowRouterList;
+            },
+
+            userInfo() {
+                return this.$store.state.userInfo;
             }
         },
+        data () {
+            return {
+                isLogin: false
+            }
+        },
+        created() {
+            let data = sessionStorage.getItem('userInfo');
+
+            if (data) {
+                let userInfo = JSON.parse(data);
+                this.isLogin = userInfo.isLogin;
+                this.$store.commit('changeUserInfoValue', userInfo);
+            }
+        },
+        methods: {
+            logout() {
+                this.isLogin = false;
+                this.$store.commit('changeUserInfoValue', {});
+                sessionStorage.clear();
+            }
+        }
     }
 </script>
 
 <style lang="less" scoped>
     .nav-page {
         height: 51px;
+        position: relative;
 
         .el-menu {
             height: 100%;
@@ -77,6 +108,15 @@
                 height: 50px;
                 line-height: 50px;
             }
+        }
+
+        .logout {
+            position: absolute;
+            top: 0;
+            right: 30px;
+            font-size: 25px;
+            line-height: 51px;
+            color: #fff;
         }
     }
 </style>

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 17:23:58
+ * @Last Modified time: 2018-09-11 15:34:01
  */
 
 import URL from 'api/request_api';
@@ -104,6 +104,7 @@ const actions = {
             let {status, message, data} = fetchData;
             if (status === 'ok') {
                 loadingInstance.close();
+                sessionStorage.setItem('userInfo', JSON.stringify(data))
                 commit('changeUserInfoValue', data)
             }
             else {
