@@ -13,43 +13,85 @@
             <el-button type="primary" icon="el-icon-edit" size="small" @click="handleEditInfo">编辑</el-button>
             <!-- 信息编辑 -->
             <el-dialog :visible.sync="isDialogShow" title="编辑信息">
-                <el-form :model="baseInfo" label-position="right" size="mini" label-width="100px">
-                    <el-form-item label="标题: ">
+
+                <el-form :model="baseInfo" label-position="right" size="mini" status-icon label-width="100px" ref="dialogForm">
+                    <el-form-item label="标题: " prop="title">
                         <el-input v-model="baseInfo.title" auto-complete="off" style="width: 300px"></el-input>
                     </el-form-item>
-                    <el-form-item label="姓名: ">
+
+                    <el-form-item label="姓名: " prop="name">
                         <el-input v-model="baseInfo.name" auto-complete="off" style="width: 300px"></el-input>
                     </el-form-item>
-                    <el-form-item label="关键字: ">
-                        <el-input v-for="(item, index) in baseInfo.keyword" :key="index" v-model="baseInfo.keyword[index]"  auto-complete="off" style="width: 300px; margin-top: 10px"></el-input>
-                    </el-form-item>
-                    <el-form-item v-for="(item, index) in baseInfo.linkUs" :key="index" :label="`联系方式${index + 1}: `">
-                        <el-form :model="baseInfo.linkUs[index]" label-position="right" label-width="50px" size="mini">
-                            <el-form-item label="icon: ">
-                                <el-input v-model="baseInfo.linkUs[index].icon" auto-complete="off" style="width: 300px"></el-input>
-                                <span style="color: #409eff;">预览: <span v-html="baseInfo.linkUs[index].icon" style="font-size: 18px" class="font"></span></span>
-                            </el-form-item>
-                            <el-form-item label="name: ">
-                                <el-input v-model="baseInfo.linkUs[index].name" auto-complete="off" style="width: 300px"></el-input>
-                            </el-form-item>
-                            <el-form-item label="link: ">
-                                <el-input v-model="baseInfo.linkUs[index].link" auto-complete="off" style="width: 300px"></el-input>
-                            </el-form-item>
-                            <el-form-item label="img: ">
-                                <el-input v-model="baseInfo.linkUs[index].img" auto-complete="off" style="width: 300px"></el-input>
-                            </el-form-item>
-                        </el-form>
+
+                    <el-form-item label="关键字: " prop="keyword">
+                        <el-input
+                            v-for="(item, index) in baseInfo.keyword"
+                            :key="index"
+                            v-model="baseInfo.keyword[index]"
+                            auto-complete="off"
+                            style="width: 300px; margin-top: 10px">
+
+                            <!-- 删除关键词的按钮 -->
+                            <i
+                                slot="suffix"
+                                class="el-icon-delete"
+                                @click="handleDeleteKeyword(index)"
+                                v-if="baseInfo.keyword.length !== 1"
+                                style="color: #409eff; cursor: pointer;"></i>
+                        </el-input>
+
+                        <!-- 添加关键词的按钮 -->
+                        <el-button type="text" icon="el-icon-plus" size="small" @click="handleAddKeyword()"></el-button>
                     </el-form-item>
 
-                    <!-- <el-form-item label="联系方式">
-                        <div v-for="(item, index) in baseInfo.linkUs" :key="index">
-                            icon: <el-input v-model="baseInfo.linkUs[index].icon" style="width: 50px"></el-input>
-                            name: <el-input v-model="baseInfo.linkUs[index].name" style="width: 100px"></el-input>
-                            Link: <el-input v-model="baseInfo.linkUs[index].name" style="width: 100px"></el-input>
-                            img: <el-input v-model="baseInfo.linkUs[index].name" style="width: 100px"></el-input>
-                        </div>
-                    </el-form-item> -->
+                    <el-form-item v-for="(item, index) in baseInfo.contactList" :key="index" :label="`联系方式${index + 1}: `">
+
+                        <el-form :model="baseInfo.contactList[index]" label-position="right" label-width="50px" size="mini" ref="contactForm">
+                            <el-form-item>
+                                <!-- 删除联系方式按钮 -->
+                                <el-button
+                                    type="danger"
+                                    icon="el-icon-delete"
+                                    size="mini"
+                                    @click="handleDeleteContactList(index)"
+                                    v-if="baseInfo.contactList.length !== 1"
+                                >删除</el-button>
+                            </el-form-item>
+
+                            <el-form-item label="icon: " prop="icon">
+                                <el-input v-model="baseInfo.contactList[index].icon" auto-complete="off" style="width: 300px"></el-input>
+                                <span style="color: #409eff;">预览: <span v-html="baseInfo.contactList[index].icon" style="font-size: 18px" class="font"></span></span>
+                            </el-form-item>
+
+                            <el-form-item label="name: " prop="linkName">
+                                <el-input v-model="baseInfo.contactList[index].name" auto-complete="off" style="width: 300px"></el-input>
+                            </el-form-item>
+
+                            <el-form-item label="link: ">
+                                <el-input v-model="baseInfo.contactList[index].link" auto-complete="off" style="width: 300px"></el-input>
+                            </el-form-item>
+
+                            <el-form-item label="img: ">
+                                <el-input v-model="baseInfo.contactList[index].img" auto-complete="off" style="width: 300px"></el-input>
+                            </el-form-item>
+                        </el-form>
+
+                        <!-- 新增联系方式按钮 -->
+                        <el-button
+                            type="primary"
+                            size="mini"
+                            v-if="index === baseInfo.contactList.length - 1"
+                            icon="el-icon-plus"
+                            @click="handleAddContactList"
+                        >新增联系方式</el-button>
+
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="info" size="medium" @click="handleCloseDialog">取消</el-button>
+                        <el-button size="medium" type="primary" @click="handleUpdateInfo">确认</el-button>
+                    </el-form-item>
                 </el-form>
+
             </el-dialog>
 
             <!-- 信息展示 -->
@@ -58,14 +100,17 @@
                     <el-form-item label="站点标题: ">
                         <span>{{baseInfo.title}}</span>
                     </el-form-item>
+
                     <el-form-item label="作者姓名: ">
                         <span>{{baseInfo.name}}</span>
                     </el-form-item>
+
                     <el-form-item label="关键字: ">
                         <p v-for="(item, index) in baseInfo.keyword" :key="index"> {{item}}</p>
                     </el-form-item>
+
                     <el-form-item label="联系方式: ">
-                        <div class="link-us" v-for="(item, index) in baseInfo.linkUs" :key="index">
+                        <div class="link-us" v-for="(item, index) in baseInfo.contactList" :key="index">
                             <a href="">
                                 <span class="font" v-html="item.icon"></span>
                                 <span>{{item.name}}</span>
@@ -108,19 +153,45 @@
                         'name',
                         'hahah'
                     ],
-                    linkUs: [
+                    contactList: [
                         {icon: '&#xe63f;', name: '微博', link: '', img: ''},
                         {icon: '&#xe694;', name: '2276969581@163.com', link: '', img: ''},
                         {icon: '&#xe712;', name: 'github', link: '', img: ''}
                     ]
                 },
-                isDialogShow: false
+                isDialogShow: false,
             }
         },
         methods: {
             handleEditInfo() {
                 this.isDialogShow = true;
+            },
+            handleDeleteKeyword(index) {
+                this.baseInfo.keyword.splice(index, 1);
+            },
+            handleAddKeyword() {
+                this.baseInfo.keyword.push('关键词' + (this.baseInfo.keyword.length + 1));
+            },
+            handleDeleteContactList(index) {
+                this.baseInfo.contactList.splice(index, 1);
+            },
+            handleAddContactList() {
+                this.baseInfo.contactList.push({
+                    icon: '',
+                    name: '',
+                    link: '',
+                    img: ''
+                })
+            },
+            handleCloseDialog() {
+
+                this.isDialogShow = false;
+            },
+
+            handleUpdateInfo() {
+               this.handleCloseDialog();
             }
+
         }
     }
 </script>
