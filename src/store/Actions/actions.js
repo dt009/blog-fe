@@ -2,10 +2,10 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-11 15:34:01
+ * @Last Modified time: 2018-09-11 17:14:13
  */
 
-import URL from 'api/request_api';
+import URL from '../../request_api/request_api';
 import Fetch from 'common/fetch';
 import {Loading} from 'element-ui';
 
@@ -132,6 +132,30 @@ const actions = {
                 loadingInstance.close();
                 window.routerList = data;
                 commit('changeRouterList', data)
+            }
+            else {
+                loadingInstance.close();
+            }
+        }
+    },
+
+    // 获取站点信息
+    async getWebsiteInfo({commit}, data = 1) {
+        let loadingInstance = Loading.service({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+        });
+
+        let fetchData = await Fetch.post(URL.getWebsiteInfoUrl, {userId: data});
+
+        if(fetchData) {
+            let {status, message, data} = fetchData;
+            if (status === 'ok') {
+                // data = [data[0]];
+                loadingInstance.close();
+                commit('changeWebsiteInfo', data)
             }
             else {
                 loadingInstance.close();

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:35:01
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-31 11:42:38
+ * @Last Modified time: 2018-09-11 16:47:22
  */
 
 
@@ -21,7 +21,10 @@ const state = {
     userInfo: {},
 
     // 路由的列表
-    routerList: []
+    routerList: [],
+
+    // 站点信息
+    websiteInfo: {}
 
 }
 

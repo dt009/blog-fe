@@ -2,11 +2,12 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 16:17:25
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 17:46:51
+ * @Last Modified time: 2018-09-11 19:08:36
  */
 
 import Vue from 'vue';
 import Router from 'vue-router';
+import {Message} from 'element-ui';
 
 const HomePage = () => import(/* webpackChunkName: `${random}`*/ '../component/HomePage/HomePage.vue');
 const AboutPage = () => import(/* webpackChunkName: 'AboutPage'*/ '../component/AboutPage/AboutPage.vue');
@@ -61,32 +62,38 @@ const router =  new Router({
         {
             path: '/router_manage',
             name: 'RouterManagePage',
-            component: RouterManagePage
+            component: RouterManagePage,
+            meta: {checkLogin: true}
         },
         {
             path: '/tags_manage',
             name: 'TagsManagePage',
-            component: TagsManagePage
+            component: TagsManagePage,
+            meta: {checkLogin: true}
         },
         {
             path: '/categories_manage',
             name: 'CategoriesManagePage',
-            component: CategoriesManagePage
+            component: CategoriesManagePage,
+            meta: {checkLogin: true}
         },
         {
             path: '/website_base_info_manage',
             name: 'WebsiteBaseInfoManagePage',
-            component: WebsiteBaseInfoManagePage
+            component: WebsiteBaseInfoManagePage,
+            meta: {checkLogin: true}
         },
         {
             path: '/user_base_info_manage',
             name: 'UserBaseInfoManagePage',
-            component: UserBaseInfoManagePage
+            component: UserBaseInfoManagePage,
+            meta: {checkLogin: true}
         },
         {
             path: '/blog_article_manage',
             name: 'BlogArticleManagePage',
-            component: BlogArticleManagePage
+            component: BlogArticleManagePage,
+            meta: {checkLogin: true}
         },
         {
             path: '/article_search',
@@ -100,16 +107,33 @@ const router =  new Router({
         },
 
     ]
-})
+});
+
+
 
 // 通过导航守卫可以设置默认路由
-// router.beforeEach((to, from, next) => {
-//     if (to.name === 'About') {
-//         next('/about/home')
-//     }
-//     else {
-//         next()
-//     }
-// })
+router.beforeEach((to, from, next) => {
+    // debugger
+
+    let isCheckLogin = false;
+
+    to.matched.forEach(item => {
+        if (item.meta && item.meta.checkLogin) {
+            isCheckLogin = true;
+        }
+    });
+
+    let data = sessionStorage.getItem('userInfo');
+    if (data && data.isLogin) {
+        next();
+    }
+    else if (!data && isCheckLogin) {
+        Message.warning('需要登录联系管理员....');
+        next({path: '/'});
+    }
+    else {
+        next()
+    }
+})
 
 export default router;

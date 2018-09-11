@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 17:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-24 15:24:26
+ * @Last Modified time: 2018-09-11 17:26:57
  */
 
 <template>
@@ -11,12 +11,9 @@
             <img :src="imgSrc" alt="头像">
         </div>
         <div class="user-name">
-            <h2>段涛</h2>
+            <h2>{{websiteInfo.name}}</h2>
             <ul class="blog-tag">
-                <li>段涛</li>
-                <li>段涛fas</li>
-                <li>段dfadf涛</li>
-                <li>段dfadf涛</li>
+                <li v-for="(item, index) in websiteInfo.keyword" :key="index">{{item}}</li>
             </ul>
         </div>
         <div class="blog-info">
@@ -70,9 +67,12 @@
             }
         },
         computed: {
-            blogTags() {
-                return ['段涛', 'dt009', 'blog', '学习'].join(' ')
+            websiteInfo() {
+                return this.$store.state.websiteInfo;
             }
+        },
+        beforeCreate () {
+            this.$store.dispatch('getWebsiteInfo');
         }
     }
 </script>

@@ -2,15 +2,14 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 22:18:33
+ * @Last Modified time: 2018-09-11 16:50:38
  */
 
 let requestUrl = '';
 
 if (process.env.NODE_ENV === 'production') {
     requestUrl = `//${window.location.host}`;
-}
-else {
+} else {
     requestUrl = '//localhost:8080'
 }
 
@@ -56,7 +55,7 @@ const URL = {
      * @description 标签相关
      */
 
-     // 获取全部的 tags 列表
+    // 获取全部的 tags 列表
     getAllTagsUrl: `${requestUrl}/tags/get/allTags`,
 
     // 添加标签
@@ -72,17 +71,28 @@ const URL = {
      * @description 分类相关
      */
 
-     // 获取全部的 categories 列表
-     getAllCategoriesUrl: `${requestUrl}/categories/get/allCategories`,
+    // 获取全部的 categories 列表
+    getAllCategoriesUrl: `${requestUrl}/categories/get/allCategories`,
 
-     // 添加分类
-     addCategoriesUrl: `${requestUrl}/categories/add/categories`,
+    // 添加分类
+    addCategoriesUrl: `${requestUrl}/categories/add/categories`,
 
-     // 更新分类
-     updateCategoriesUrl: `${requestUrl}/categories/update/categories`,
+    // 更新分类
+    updateCategoriesUrl: `${requestUrl}/categories/update/categories`,
 
-     // 删除分类
-     deleteCategoriesUrl: `${requestUrl}/categories/delete/categories`,
+    // 删除分类
+    deleteCategoriesUrl: `${requestUrl}/categories/delete/categories`,
+
+    /**
+     * @description 站点信息
+     */
+
+     // 获取站点信息
+    getWebsiteInfoUrl: `${requestUrl}/websiteInfo/get/websiteInfo`,
+
+    // 更新站点信息
+    updateWebsiteInfoUrl: `${requestUrl}/websiteInfo/update/websiteInfo`
+
 }
 
 export default URL;

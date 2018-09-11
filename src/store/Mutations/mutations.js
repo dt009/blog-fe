@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:34:14
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 22:22:52
+ * @Last Modified time: 2018-09-11 16:48:25
  */
 
 const mutations = {
@@ -48,6 +48,12 @@ const mutations = {
     changeRouterList(state, value) {
         console.log('获取的路由列表为 ==>> ', value);
         state.routerList = value;
+    },
+
+    // 修改站点信息 websiteInfo
+    changeWebsiteInfo(state, value) {
+        console.log('站点信息 ==>> ', value);
+        state.websiteInfo = value;
     }
 }
 

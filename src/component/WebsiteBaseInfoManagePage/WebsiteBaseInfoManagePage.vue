@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-09-10 10:21:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 20:59:18
+ * @Last Modified time: 2018-09-11 18:35:03
  */
 
 <template>
@@ -88,7 +88,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="info" size="medium" @click="handleCloseDialog">取消</el-button>
-                        <el-button size="medium" type="primary" @click="handleUpdateInfo">确认</el-button>
+                        <el-button size="medium" type="primary" :loading="isUpdateLoading" @click="handleUpdateInfo">确认</el-button>
                     </el-form-item>
                 </el-form>
 
@@ -98,23 +98,38 @@
             <div class="show-info">
                 <el-form label-position="right" inline label-width="100px" :model="baseInfo">
                     <el-form-item label="站点标题: ">
-                        <span>{{baseInfo.title}}</span>
+                        <span>{{websiteInfo.title}}</span>
                     </el-form-item>
 
                     <el-form-item label="作者姓名: ">
-                        <span>{{baseInfo.name}}</span>
+                        <span>{{websiteInfo.name}}</span>
                     </el-form-item>
 
                     <el-form-item label="关键字: ">
-                        <p v-for="(item, index) in baseInfo.keyword" :key="index"> {{item}}</p>
+                        <p v-for="(item, index) in websiteInfo.keyword" :key="index"> {{item}}</p>
                     </el-form-item>
 
                     <el-form-item label="联系方式: ">
-                        <div class="link-us" v-for="(item, index) in baseInfo.contactList" :key="index">
-                            <a href="">
-                                <span class="font" v-html="item.icon"></span>
-                                <span>{{item.name}}</span>
+                        <div class="link-us" v-for="(item, index) in websiteInfo.contactList" :key="index">
+
+                            <el-popover
+                                v-if="!!item.img && !item.link"
+                                placement="top-start"
+                                width="200"
+                                trigger="hover"
+                            >
+                                <img :src="item.img" alt="item.name" style="width: 170px">
+                                <div slot="reference">
+                                    <span class="font" v-html="item.icon"></span> <span>{{item.name}}</span>
+                                </div>
+                            </el-popover>
+
+                            <a :href="item.link" v-if="!!item.link">
+                                <span class="font" v-html="item.icon"></span> <span>{{item.name}}</span>
                             </a>
+                            <div v-if="!item.img && !item.link">
+                                <span class="font" v-html="item.icon"></span> <span>{{item.name}}</span>
+                            </div>
                         </div>
                     </el-form-item>
                 </el-form>
@@ -131,7 +146,9 @@
         Dialog,
         Form,
         FormItem,
-        Input
+        Input,
+        Message,
+        Popover
     } from 'element-ui';
 
     Vue.use(Button);
@@ -139,31 +156,28 @@
     Vue.use(Form);
     Vue.use(FormItem);
     Vue.use(Input);
+    Vue.use(Popover);
+
+    import URL from '../../request_api/request_api.js';
+    import Fetch from '../../common/fetch.js';
 
     export default {
         name: 'WebsiteBaseInfoManagePage',
+        computed: {
+            websiteInfo() {
+                return this.$store.state.websiteInfo;
+            }
+        },
         data() {
             return {
-                baseInfo: {
-                    title: '段涛的博客',
-                    name: '段涛',
-                    keyword: [
-                        'blog',
-                        'study',
-                        'name',
-                        'hahah'
-                    ],
-                    contactList: [
-                        {icon: '&#xe63f;', name: '微博', link: '', img: ''},
-                        {icon: '&#xe694;', name: '2276969581@163.com', link: '', img: ''},
-                        {icon: '&#xe712;', name: 'github', link: '', img: ''}
-                    ]
-                },
+                baseInfo: {},
                 isDialogShow: false,
+                isUpdateLoading: false
             }
         },
         methods: {
             handleEditInfo() {
+                this.baseInfo = JSON.parse(JSON.stringify(this.websiteInfo));
                 this.isDialogShow = true;
             },
             handleDeleteKeyword(index) {
@@ -175,6 +189,7 @@
             handleDeleteContactList(index) {
                 this.baseInfo.contactList.splice(index, 1);
             },
+
             handleAddContactList() {
                 this.baseInfo.contactList.push({
                     icon: '',
@@ -183,13 +198,30 @@
                     img: ''
                 })
             },
-            handleCloseDialog() {
 
+            handleCloseDialog() {
                 this.isDialogShow = false;
             },
 
             handleUpdateInfo() {
-               this.handleCloseDialog();
+
+                this.isUpdateLoading = true;
+
+                Fetch.post(URL.updateWebsiteInfoUrl, this.baseInfo)
+                    .then(res => {
+                        let {status, message, data} = res;
+                        if (status === 'ok') {
+                            Message.success(message);
+                            this.$store.dispatch('getWebsiteInfo', data.userId);
+                            this.handleCloseDialog();
+                        }
+                        else {
+                            Message.error(message);
+                        }
+                        this.isUpdateLoading = false;
+                    })
+
+                console.log(this.baseInfo);
             }
 
         }
