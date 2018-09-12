@@ -29,7 +29,7 @@
                             :key="index"
                             v-model="baseInfo.keyword[index]"
                             auto-complete="off"
-                            style="width: 300px; margin-top: 10px">
+                            style="width: 30%; margin-top: 10px; margin-right: 10px">
 
                             <!-- 删除关键词的按钮 -->
                             <i
