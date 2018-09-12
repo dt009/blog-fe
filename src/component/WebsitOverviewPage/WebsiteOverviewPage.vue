@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-15 17:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-11 17:26:57
+ * @Last Modified time: 2018-09-11 19:31:34
  */
 
 <template>
@@ -40,18 +40,28 @@
         </div>
         <div class="contact-us">
             <ul>
-                <li>
-                    <a href="https://github.com/dt009"><span class="font">&#xe606;</span>Github</a>
+                <li v-for="(item, index) in websiteInfo.contactList" :key="index">
+                    <el-popover
+                        v-if="!!item.img && !item.link"
+                        placement="top-start"
+                        width="200"
+                        trigger="hover"
+                    >
+                        <img :src="item.img" alt="item.name" style="width: 170px">
+                        <div slot="reference">
+                            <span class="font" v-html="item.icon"></span><span>{{item.name}}</span>
+                        </div>
+                    </el-popover>
+
+                    <a :href="item.link" v-if="!!item.link">
+                        <span class="font" v-html="item.icon"></span><span>{{item.name}}</span>
+                    </a>
+
+                    <div v-if="!item.img && !item.link">
+                        <span class="font" v-html="item.icon"></span><span>{{item.name}}</span>
+                    </div>
                 </li>
-                <li>
-                    <a href="https://github.com/dt009"><span class="font">&#xe606;</span>Github</a>
-                </li>
-                <li>
-                    <a href="https://github.com/dt009"><span class="font">&#xe606;</span>Github</a>
-                </li>
-                <li>
-                    <a href="https://github.com/dt009"><span class="font">&#xe606;</span>Github</a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -59,6 +69,10 @@
 
 <script>
     import imgSrc from 'public/images/avatar.gif';
+    import {Popover} from 'element-ui';
+    import Vue from 'vue';
+    Vue.use(Popover);
+
     export default {
         name: 'WebsiteOverviewPage',
         data() {
@@ -170,9 +184,10 @@
 
                 li {
                     font-size: 14px;
-                    width: 50%;
-                    text-align: center;
+                    text-align: left;
                     line-height: 24px;
+                    padding-left: 20px;
+                    width: 100%;
 
                     a {
                         span {
