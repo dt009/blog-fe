@@ -2,23 +2,23 @@
  * @Author: duantao-ds
  * @Date: 2018-09-10 10:21:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 10:49:55
+ * @Last Modified time: 2018-09-12 14:23:55
  */
 
 <template>
-    <div class="website-base-info-manage">
+    <div class="article-search-page">
         <h2>博客文章搜索</h2>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'WebsiteBaseInfoManagePage'
+    name: 'ArticleSearchPage'
 }
 </script>
 
 <style lang="less" scoped>
-    .website-base-info-manage {
+    .article-search-page {
         padding-left: 10px;
         padding-top: 10px;
 

@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-09 14:57:24
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 22:20:29
+ * @Last Modified time: 2018-09-12 18:51:02
  */
 
 const merge = require('webpack-merge');
@@ -23,12 +23,10 @@ module.exports = merge(common, {
     mode: 'production',
     entry: {
         app: './src/index.js',
-        vendor: [
-            'vue',
-            'vue-router',
-            'vuex',
-            'element-ui',
-        ]
+        vue: 'vue',
+        vueRouter: 'vue-router',
+        vuex: 'vuex',
+        eleUi: 'element-ui',
     },
 
     output: {
@@ -92,8 +90,9 @@ module.exports = merge(common, {
                             publicPath: '/'
                         }
                     },
-                    {loader: 'happypack/loader?id=css'},
+                    // {loader: 'happypack/loader?id=css'},
                     {loader: 'happypack/loader?id=less'}
+
                 ]
             },
             {
@@ -134,7 +133,7 @@ module.exports = merge(common, {
         new HappyPack({
             id: 'less',
             cache:false,
-            loaders: ['less-loader']
+            loaders: ['css-loader', 'less-loader']
         })
     ]
 })

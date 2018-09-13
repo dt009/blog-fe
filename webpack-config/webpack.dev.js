@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 23:25:58
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-08-21 17:10:06
+ * @Last Modified time: 2018-09-12 14:20:38
  */
 
 const merge = require('webpack-merge');
@@ -26,7 +26,7 @@ module.exports = merge(common, {
     },
 
     output: {
-        filename: '[name].js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/'
     },

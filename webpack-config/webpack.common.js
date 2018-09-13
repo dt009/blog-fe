@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-08 16:29:51
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 23:44:20
+ * @Last Modified time: 2018-09-12 19:25:15
  */
 
 const webpack = require('webpack');
@@ -20,13 +20,13 @@ module.exports = {
         runtimeChunk: 'multiple',
         splitChunks: {
             chunks: 'all',
-            cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all'
-                }
-            }
+            // cacheGroups: {
+            //     vendor: {
+            //         test: /[\\/]node_modules[\\/]/,
+            //         name: 'vendors',
+            //         chunks: 'all'
+            //     }
+            // }
         }
     },
 

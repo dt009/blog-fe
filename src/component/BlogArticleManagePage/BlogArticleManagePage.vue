@@ -2,23 +2,23 @@
  * @Author: duantao-ds
  * @Date: 2018-09-10 10:21:34
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-10 10:46:20
+ * @Last Modified time: 2018-09-12 14:23:09
  */
 
 <template>
-    <div class="website-base-info-manage">
+    <div class="blog-article-manage">
         <h2>博客文章管理</h2>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'WebsiteBaseInfoManagePage'
+    name: 'BlogArticleManagePage'
 }
 </script>
 
 <style lang="less" scoped>
-    .website-base-info-manage {
+    .blog-article-manage {
         padding-left: 10px;
         padding-top: 10px;
 

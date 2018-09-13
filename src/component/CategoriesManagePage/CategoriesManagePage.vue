@@ -2,11 +2,11 @@
  * @Author: duantao-ds
  * @Date: 2018-09-06 10:09:11
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-08 22:39:30
+ * @Last Modified time: 2018-09-12 14:24:42
  */
 
 <template>
-    <div class="tags-manage-page">
+    <div class="categories-manage-page">
         <h2>分类管理</h2>
         <div class="tags-manage-page">
             <el-button @click="handleAddNewCategories" size="small" type="primary" icon="el-icon-plus">新增一个分类</el-button>
@@ -307,7 +307,7 @@
 </script>
 
 <style lang="less" scoped>
-    .tags-manage-page {
+    .categories-manage-page {
         padding-left: 10px;
         padding-top: 10px;
         h2 {
