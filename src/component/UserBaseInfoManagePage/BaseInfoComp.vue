@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-09-13 18:21:55
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-13 19:10:32
+ * @Last Modified time: 2018-09-14 14:55:17
  */
 
 <template>
@@ -24,6 +24,10 @@
                     value-format="yyyy-MM-dd"
                     :clearable="false"
                 ></el-date-picker>
+            </el-form-item>
+            <el-form-item>
+                <div slot="label">职业: </div>
+                <el-input size="mini" v-model="baseInfo.profession" style="width: 200px"></el-input>
             </el-form-item>
             <el-form-item>
                 <div slot="label">性别: </div>

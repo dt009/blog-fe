@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-09-13 19:02:38
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-13 19:11:40
+ * @Last Modified time: 2018-09-14 14:00:25
  */
 
 <template>
@@ -23,13 +23,13 @@
                     <span>状态: <span :style="{color: selectShow.email.isShow ? '#409eff' : 'red' }">{{selectShow.email.isShow ? '显示' : '隐藏'}}</span></span>
                 </el-form-item>
                 <el-form-item>
-                    <div slot="label">电话: </div>
+                    <div slot="label">QQ: </div>
                     <el-checkbox size="mini" v-model="selectShow.qq.isShow"></el-checkbox>
                     <el-input size="mini" style="width: 300px" v-model="selectShow.qq.value"></el-input>
                     <span>状态: <span :style="{color: selectShow.qq.isShow ? '#409eff' : 'red' }">{{selectShow.qq.isShow ? '显示' : '隐藏'}}</span></span>
                 </el-form-item>
                 <el-form-item>
-                    <div slot="label">电话: </div>
+                    <div slot="label">微信: </div>
                     <el-checkbox size="mini" v-model="selectShow.weiChat.isShow"></el-checkbox>
                     <el-input size="mini" style="width: 300px" v-model="selectShow.weiChat.value"></el-input>
                     <span>状态: <span :style="{color: selectShow.weiChat.isShow ? '#409eff' : 'red' }">{{selectShow.weiChat.isShow ? '显示' : '隐藏'}}</span></span>
