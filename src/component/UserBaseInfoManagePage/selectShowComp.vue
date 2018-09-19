@@ -2,45 +2,29 @@
  * @Author: duantao-ds
  * @Date: 2018-09-13 19:02:38
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-14 14:00:25
+ * @Last Modified time: 2018-09-14 17:11:00
  */
 
 <template>
     <div class="select-show">
         <div>
             <h3>未知</h3>
-            <el-form size="mini" :model="selectShow" label-position="right">
-                <el-form-item>
-                    <div slot="label">电话: </div>
-                    <el-checkbox size="mini" v-model="selectShow.mobile.isShow"></el-checkbox>
-                    <el-input size="mini" style="width: 300px" v-model="selectShow.mobile.value"></el-input>
-                    <span>状态: <span :style="{color: selectShow.mobile.isShow ? '#409eff' : 'red' }">{{selectShow.mobile.isShow ? '显示' : '隐藏'}}</span></span>
-                </el-form-item>
-                <el-form-item>
-                    <div slot="label">邮箱: </div>
-                    <el-checkbox size="mini" v-model="selectShow.email.isShow"></el-checkbox>
-                    <el-input size="mini" style="width: 300px" v-model="selectShow.email.value"></el-input>
-                    <span>状态: <span :style="{color: selectShow.email.isShow ? '#409eff' : 'red' }">{{selectShow.email.isShow ? '显示' : '隐藏'}}</span></span>
-                </el-form-item>
-                <el-form-item>
-                    <div slot="label">QQ: </div>
-                    <el-checkbox size="mini" v-model="selectShow.qq.isShow"></el-checkbox>
-                    <el-input size="mini" style="width: 300px" v-model="selectShow.qq.value"></el-input>
-                    <span>状态: <span :style="{color: selectShow.qq.isShow ? '#409eff' : 'red' }">{{selectShow.qq.isShow ? '显示' : '隐藏'}}</span></span>
-                </el-form-item>
-                <el-form-item>
-                    <div slot="label">微信: </div>
-                    <el-checkbox size="mini" v-model="selectShow.weiChat.isShow"></el-checkbox>
-                    <el-input size="mini" style="width: 300px" v-model="selectShow.weiChat.value"></el-input>
-                    <span>状态: <span :style="{color: selectShow.weiChat.isShow ? '#409eff' : 'red' }">{{selectShow.weiChat.isShow ? '显示' : '隐藏'}}</span></span>
-                </el-form-item>
+            <el-form size="mini" label-position="right">
                 <el-form-item>
                     <div slot="label">学历: </div>
-                    <el-checkbox size="mini" v-model="selectShow.education.isShow"></el-checkbox>
-                    <el-select v-model="selectShow.education.value">
-                        <el-option v-for="(education, index) in educationList" :key="index" :label="education.label" :value="education.value"></el-option>
-                    </el-select>
-                    <span>状态: <span :style="{color: selectShow.education.isShow ? '#409eff' : 'red' }">{{selectShow.education.isShow ? '显示' : '隐藏'}}</span></span>
+                    <el-checkbox size="mini" v-model="education.isShow"></el-checkbox>
+                        <el-select v-model="education.value">
+                            <el-option v-for="(education, index) in educationList" :key="index" :label="education.label" :value="education.value"></el-option>
+                        </el-select>
+                        <span>状态: <span :style="{color: education.isShow ? '#409eff' : 'red' }">{{education.isShow ? '显示' : '隐藏'}}</span></span>
+                </el-form-item>
+                <el-form-item v-for="(item, index) in selectShow" :label="'联系方式' + (index + 1)" :key="index">
+                    <el-checkbox size="mini" v-model="item.isShow"></el-checkbox>
+                    <el-input size="mini" style="width: 100px" v-model="item.label"></el-input>
+                    <el-input size="mini" style="width: 200px" v-model="item.value"></el-input>
+                    <span>状态: <span :style="{color: item.isShow ? '#409eff' : 'red' }">{{item.isShow ? '显示' : '隐藏'}}</span></span>
+                    <el-button @click="handleDeleteWay(index)" v-if="selectShow.length !== 1" type="danger" style="margin-left: 20px"> 删除</el-button>
+                    <el-button @click="handleAddWay" v-if="selectShow.length - 1 === index" type="primary" style="margin-left: 20px"> 添加</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -56,7 +40,8 @@
         Input,
         Checkbox,
         Select,
-        Option
+        Option,
+        Button
     } from 'element-ui';
 
     Vue.use(Form);
@@ -64,11 +49,13 @@
     Vue.use(Checkbox);
     Vue.use(Select);
     Vue.use(Option);
+    Vue.use(Button);
 
     export default {
         name: 'SelectShowComp',
         props: {
-            selectShow: Object
+            selectShow: Array,
+            education: Object
         },
 
         data() {
@@ -90,6 +77,23 @@
         watch: {
             selectShow(val) {
                 this.$emit('update:selectShow', val)
+            },
+            education(val) {
+                this.$emit('update:education', val)
+            }
+        },
+
+        methods: {
+            handleDeleteWay(index) {
+                this.selectShow.splice(index, 1);
+            },
+
+            handleAddWay() {
+                this.selectShow.push({
+                    label: '',
+                    isShow: true,
+                    value: ''
+                })
             }
         }
     }

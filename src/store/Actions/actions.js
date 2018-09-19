@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:26:16
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-11 17:14:13
+ * @Last Modified time: 2018-09-14 18:31:33
  */
 
 import URL from '../../request_api/request_api';
@@ -156,6 +156,30 @@ const actions = {
                 // data = [data[0]];
                 loadingInstance.close();
                 commit('changeWebsiteInfo', data)
+            }
+            else {
+                loadingInstance.close();
+            }
+        }
+    },
+
+     // 获取关于的用户信息
+     async getAboutUserInfo({commit}, data = 1) {
+        let loadingInstance = Loading.service({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+        });
+
+        let fetchData = await Fetch.post(URL.getUserInfoUrl, {userId: data});
+
+        if(fetchData) {
+            let {status, message, data} = fetchData;
+            if (status === 'ok') {
+                // data = [data[0]];
+                loadingInstance.close();
+                commit('changeAboutUserInfo', data)
             }
             else {
                 loadingInstance.close();

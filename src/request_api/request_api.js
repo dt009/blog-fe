@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-11 16:50:38
+ * @Last Modified time: 2018-09-14 18:37:25
  */
 
 let requestUrl = '';
@@ -91,7 +91,17 @@ const URL = {
     getWebsiteInfoUrl: `${requestUrl}/websiteInfo/get/websiteInfo`,
 
     // 更新站点信息
-    updateWebsiteInfoUrl: `${requestUrl}/websiteInfo/update/websiteInfo`
+    updateWebsiteInfoUrl: `${requestUrl}/websiteInfo/update/websiteInfo`,
+
+    /**
+     * @description 用户信息相关
+     */
+    // 更新用户基本信息
+    updateUserInfoUrl: `${requestUrl}/userInfo/update/userInfo`,
+
+    // 获取用户基本信息
+    getUserInfoUrl: `${requestUrl}/UserInfo/get/userInfo`
+
 
 }
 

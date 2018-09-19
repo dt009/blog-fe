@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:34:14
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-11 16:48:25
+ * @Last Modified time: 2018-09-14 18:20:28
  */
 
 const mutations = {
@@ -54,6 +54,12 @@ const mutations = {
     changeWebsiteInfo(state, value) {
         console.log('站点信息 ==>> ', value);
         state.websiteInfo = value;
+    },
+
+    // 更改 aboutUserInfo
+    changeAboutUserInfo(state, value) {
+        console.log('获取的关于的信息 ==>> ', value);
+        state.aboutUserInfo = value;
     }
 }
 

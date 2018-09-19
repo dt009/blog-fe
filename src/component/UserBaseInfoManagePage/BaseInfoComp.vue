@@ -2,13 +2,13 @@
  * @Author: duantao-ds
  * @Date: 2018-09-13 18:21:55
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-14 14:55:17
+ * @Last Modified time: 2018-09-14 19:15:21
  */
 
 <template>
     <div class="base-info">
         <h3>基本信息</h3>
-        <el-form size="mini" class="form-base-info" inline label-position="right" label-width="60px" :model="baseInfo">
+        <el-form size="mini" class="form-base-info" inline label-position="right" label-width="60px">
             <el-form-item>
                 <div slot="label">姓名: </div>
                 <el-input size="mini" v-model="baseInfo.name" style="width: 200px"></el-input>
@@ -64,7 +64,11 @@
         name: 'BaseInfoComp',
 
         props: {
-            baseInfo: Object
+            baseInfo: Object,
+            name: String,
+            gender: Number,
+            birthday: String,
+            profession: String
         },
 
         data() {
@@ -76,6 +80,18 @@
         watch: {
             baseInfo(val) {
                 this.$emit('update:baseInfo', val)
+            },
+            name(val) {
+                this.$emit('update:name', val)
+            },
+            gender(val) {
+                this.$emit('update:gender', val)
+            },
+            birthday(val) {
+                this.$emit('update:birthday', val)
+            },
+            profession(val) {
+                this.$emit('update:profession', val)
             }
         }
     }

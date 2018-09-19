@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 11:35:01
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-11 16:47:22
+ * @Last Modified time: 2018-09-14 18:19:17
  */
 
 
@@ -24,7 +24,10 @@ const state = {
     routerList: [],
 
     // 站点信息
-    websiteInfo: {}
+    websiteInfo: {},
+
+    // 作者信息
+    aboutUserInfo: {}
 
 }
 
