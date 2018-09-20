@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-17 10:55:22
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-19 16:35:30
+ * @Last Modified time: 2018-09-19 18:38:20
  */
 
 <template>
@@ -11,7 +11,7 @@
 
         <div class="about-page-mian">
             <div class="base-info">
-                <h3>基本信息</h3>
+                <h3><span class="font">&#xe61e;</span> 基本信息</h3>
                 <el-form label-position="right" size="mini" label-width="80px">
                     <el-form-item>
                         <div slot="label"><span class="font">&#xe61c;</span> 姓名:</div>
@@ -39,23 +39,24 @@
                 <img src="http://owtyucuge.bkt.clouddn.com/WechatIMG11.jpeg" alt="">
             </div>
             <div class="cantact-way">
-                <h3>联系方式</h3>
+                <h3><span class="font">&#xe62a;</span> 联系方式</h3>
                 <el-form label-position="right" size="mini" label-width="80px">
                     <el-form-item v-if="info && item.isShow" v-for="(item, index) in info.contact_way" :key="index">
-                        <div slot="label"><span class="font" v-html="getContactIcon(item.label)"></span> {{item.label}}:</div>
+                        <div slot="label"><span class="font" v-html="getContactIcon(item.label)"></span> :</div>
                         <p>{{item.value}}</p>
                     </el-form-item>
                 </el-form>
             </div>
             <div class="cantact-way">
-                <h3>专业技能</h3>
-                <el-form label-position="right" size="mini" label-width="80px">
+                <h3><span class="font">&#xe7b6;</span> 专业技能</h3>
+                <el-form label-position="right" size="mini" label-width="120px">
                     <el-form-item v-if="info && item.isShow" v-for="(item, index) in info.skill" :key="index">
-                        <div slot="label">{{item.label}}:</div>
+                        <div slot="label"><span class="font" v-html="getSkillIcon(item.label).icon"></span> <span v-html="getSkillIcon(item.label).name"></span>:</div>
                         <el-rate
                             v-model="item.value"
                             allow-half
                             show-text
+                            disabled
                             style="display: inline-block"
                             :texts="['了解', '一般', '良好', '熟练', '精通']"
                         ></el-rate>
@@ -152,6 +153,27 @@
                         return '&#xe607;'
                         break;
                 }
+            },
+
+            getSkillIcon(value) {
+
+                let arr = [
+                    {label: 'html', name: 'HTML', icon: '&#xe6b1;'},
+                    {label: 'css', name: 'CSS', icon: '&#xe653;'},
+                    {label: 'js', name: 'JavaScript', icon: '&#xf1db;'},
+                    {label: 'node', name: 'NodeJS', icon: '&#xf1fd;'},
+                    {label: 'react', name: 'React', icon: '&#xf21a;'},
+                    {label: 'vue',  name: 'Vue', icon: '&#xe640;'},
+                    {label: 'angular', name: 'Angular', icon: '&#xe61f;'},
+                    {label: 'sass', name: 'Sass', icon: '&#xf22a;'},
+                    {label: 'less', name: 'Less', icon: '&#xe653;'},
+                    {label: 'bootstrap', name: 'BootStrap', icon: '&#xe653;'},
+                    {label: 'jq', name: 'JQuery', icon: '&#xe653;'},
+                ]
+
+                let obj = arr.filter(item => item.label === value)[0];
+
+                return  obj
             }
         }
     }
