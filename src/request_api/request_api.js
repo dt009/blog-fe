@@ -2,7 +2,7 @@
  * @Author: duantao-ds
  * @Date: 2018-08-16 14:44:29
  * @Last Modified by: duantao-ds
- * @Last Modified time: 2018-09-14 18:37:25
+ * @Last Modified time: 2018-09-21 11:06:28
  */
 
 let requestUrl = '';
@@ -17,21 +17,6 @@ console.log('请求的地址 host ===>> ', requestUrl);
 
 const URL = {
     testUrl: `${requestUrl}/test`,
-
-    // 获取全部的文章列表
-    getAllArticleUrl: `${requestUrl}/all`,
-
-    // 获取全部的分类
-    getAllCategoriesUrl: `${requestUrl}/get/categories/allList`,
-
-    // 博客文件上传按钮
-    uploadBlogUrl: `${requestUrl}/upload/blog`,
-
-    // 添加博客的地址
-    addBlogArticleUrl: `${requestUrl}/blog/addArticle`,
-
-    // 请求博客的具体内容
-    getArticleDetailUrl: `${requestUrl}/get/article/details`,
 
     // 登录请求
     loginUrl: `${requestUrl}/login`,
@@ -100,7 +85,19 @@ const URL = {
     updateUserInfoUrl: `${requestUrl}/userInfo/update/userInfo`,
 
     // 获取用户基本信息
-    getUserInfoUrl: `${requestUrl}/UserInfo/get/userInfo`
+    getUserInfoUrl: `${requestUrl}/UserInfo/get/userInfo`,
+
+    /**
+     * @desc 博客文章列表相关
+     */
+
+    // 获取全部的文章列表
+    getAllArticleUrl: `${requestUrl}/article/get/article`,
+
+    // 文章上传地址
+    uploadBlogUrl: `${requestUrl}/article/upload/article`,
+
+
 
 
 }
